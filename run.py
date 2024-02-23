@@ -48,6 +48,26 @@ def input_for_saving_info(prompt):
     return user_input
 
 
+def exit_or_continue_game():
+    """
+    Asks the player whether to exit the game or continue.
+    Returns True if the player chooses to continue, False if they choose to exit.
+    """
+    while True:
+
+        print_input_instructions("Are you ready to to dive in danger?")
+        choice = input_for_saving_info("To continue type Y, or N to exit game ").strip().lower()
+        if choice == 'y':
+            print("Continuing the game...")
+            return True
+        if choice == 'n':
+            print("Exiting the game...")
+            break
+       
+        print("Invalid choice. Please type 'y' for yes or 'n' for no.")
+    return False
+
+
 def print_input_instructions(instructions, color=Fore.WHITE):
     """
     Print input instructions with a specified color.
@@ -69,7 +89,28 @@ def print_input_instructions(instructions, color=Fore.WHITE):
     )
 
 
-# DATA FUNCTIONS
+# DATA  AND INFO FUNCTIONS
+def greet_player_and_explain_game():
+    """
+    Greets the player and explains the game with colors and delays.
+    """
+    print(Fore.GREEN + "Welcome, adventurer!" + Fore.RESET)
+    time.sleep(1)
+    print(Fore.MAGENTA + 
+          "In this quest, we will go through challenges to save Waldo,"
+          + Fore.RESET)
+    time.sleep(1)
+    print(Fore.MAGENTA +
+          "who has been captured by the evil princess Vladislava." 
+          + Fore.RESET)
+    time.sleep(1)
+    print(Fore.MAGENTA + "You are Waldo's last hope!" + Fore.RESET)
+    time.sleep(1)
+    print(
+        Fore.MAGENTA + 
+        "Are you ready to embark on this adventure?" + Fore.RESET)
+
+
 def collect_player_info():
     """
     Collect player's name and location, and save it to Google Sheets.
@@ -87,5 +128,27 @@ def collect_player_info():
           f"{Fore.YELLOW}{location}{Fore.RESET} let's save the Waldo.")
 
 
+def print_challenge_instructions(instructions, color=Fore.WHITE):
+    """
+    Print cahllenge instructions with a specified color.
+
+    Args:
+        instructions (str): The instructions to be displayed.
+        color (str, optional): The color of the instructions."
+        "
+
+    Returns:
+        None
+    """
+
+    print()
+    print(
+        f"{Back.GREEN}{Fore.WHITE}{color}{' ' * 3} "
+        f"{instructions.center(len(instructions) + 6)}"
+        f"{' ' * 3}{Fore.RESET}{Back.RESET}"
+    )
+
 # PLAY GAME FUNCTIONS
+greet_player_and_explain_game()
+exit_or_continue_game()
 collect_player_info()
