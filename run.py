@@ -27,9 +27,8 @@ SHEET = GSPREAD_CLIENT.open(SPREADSHEET)
 WORKSHEET_NAME = 'players'
 worksheet = SHEET.worksheet(WORKSHEET_NAME)
 
-"""Inputs related functions"""
 
-
+# Inputs related functions
 def input_for_saving_info(prompt):
     """
     Prompt the user for input with a green background.
@@ -64,12 +63,29 @@ def print_input_instructions(instructions, color=Fore.WHITE):
 
     print()
     print(
-        f"{Back.RED}{Fore.WHITE}{color}{' ' * 3} "
+        f"{Back.GREEN}{Fore.WHITE}{color}{' ' * 3} "
         f"{instructions.center(len(instructions) + 6)}"
         f"{' ' * 3}{Fore.RESET}{Back.RESET}"
     )
 
 
-print_input_instructions("Enter you name please")
-user_info_input = input_for_saving_info("Enter your name: ")
-print("You entered:", user_info_input)
+# DATA FUNCTIONS
+def collect_player_info():
+    """
+    Collect player's name and location, and save it to Google Sheets.
+    """
+    print_input_instructions("Enter your name please")
+    name = input_for_saving_info("Enter your name: ")
+
+    print_input_instructions("Enter your location please")
+    location = input_for_saving_info("Enter your location: ")
+
+    # Append player information to the worksheet
+    worksheet.append_row([name, location])
+
+    print(f"Welcome to adventure {Fore.YELLOW}{name}{Fore.RESET} of "
+          f"{Fore.YELLOW}{location}{Fore.RESET} let's save the Waldo.")
+
+
+# PLAY GAME FUNCTIONS
+collect_player_info()
