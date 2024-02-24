@@ -5,6 +5,7 @@ This module contains functions related to the Lock Cracker game.
 """
 import shutil
 import random
+from random import shuffle, sample
 import re
 import time
 from colorama import init, Fore, Back, Style
@@ -35,50 +36,9 @@ worksheet_players = SHEET.worksheet(PLAYERS_WORKSHEET)
 RIDDLES_WORKSHEET = 'riddles'
 worksheet_riddles = SHEET.worksheet(RIDDLES_WORKSHEET)
 
-
-def upload_riddles_to_worksheet(worksheet):
-    """
-    Uploads a predefined list of riddles to a specified worksheet.
-
-    Args:
-        worksheet (Worksheet): The worksheet object where the riddles will be uploaded.
-
-    Returns:
-        None
-    """
-    # Define the list of riddles with their answers
-    riddles = [
-        ["What can you break without touching it?", "promise"],
-        ["What has a heart that doesn't beat?", "n artichoke"],
-        ["What has one eye but can't see?", "needle"],
-        ["What has a face and two hands, but no arms or legs?", "clock"],
-        ["What comes once in a minute, twice in a moment, but never in a thousand years?", "The letter 'M'"],
-        ["What has many keys but can't open a single lock?", "typewriter"],
-        ["I’m full of holes, yet I can hold water. What am I?", "net"],
-        ["What has a bed but never sleeps, can run but never walks?", "river"],
-        ["What can travel around the world while staying in a corner?", "stamp"],
-        ["What has a neck but no head?", "bottle"],
-        ["What has keys but can't open locks?", "piano"],
-        ["What has hands but can't clap?", "clock"],
-        ["What belongs to you but others use it more than you do?", "Your name"],
-        ["What can be heard and caught but never seen?", "cold"],
-        ["What is so fragile that saying its name breaks it?", "Silence"],
-        ["What is full of holes but still holds water?", "sponge"]
-    ]
-
-
-    # Clear existing data in the worksheet
-    worksheet.clear()
-
-    # Define headers for the riddles
-    headers = ["Riddle", "Answer"]
-
-    # Append headers to the worksheet
-    worksheet.append_row(headers)
-
-    # Append each riddle and its answer to the worksheet
-    for riddle, answer in riddles:
-        worksheet.append_row([riddle, answer])
+# words sheet
+WORDS_WORKSHEET = 'words'
+worksheet_words = SHEET.worksheet(WORDS_WORKSHEET)
 
 
 # Inputs related function
@@ -133,7 +93,7 @@ def print_input_instructions(instructions, color=Fore.WHITE):
 
     print()
     print(
-        f"{Back.GREEN}{Fore.WHITE}{color}{' ' * 3} "
+        f"{Back.BLUE}{Fore.WHITE}{color}{' ' * 3} "
         f"{instructions.center(len(instructions) + 6)}"
         f"{' ' * 3}{Fore.RESET}{Back.RESET}"
     )
@@ -203,7 +163,7 @@ def print_password_challenge_instructions():
         "Buddy Waldo, your dear friend, is imprisoned"
         " within these walls, alone and scared.",
         "You are his only hope for freedom and salvation.",
-        "To rescue him, you must crack the lock protecting his cell,"
+        "To rescue him, you must crack the lock to enter the Castle,"
         " a formidable 4-digit password lock.",
         "The password consists of numbers ranging from 0 to 5,"
         " each digit adding to the challenge.",
@@ -241,7 +201,7 @@ def print_centered_text(text, color):
     )
     print()
 
-"""
+
 # PLAY GAME CALLS
 greet_player_and_explain_game()
 collect_player_info()
@@ -249,7 +209,7 @@ time.sleep(0.5)
 print_centered_text("Challenge one, CRACK THE LOCK!!", Fore.RED)
 time.sleep(0.5)
 print_password_challenge_instructions()
-"""
+
 
 # PASSWORD LEVEL FUNCTIONS
 def generate_password():
@@ -400,6 +360,8 @@ def play_riddle_level():
         except ValueError as e:
             print(e)
 
+
+
 # ROCK_PAPER_SCISSORS LEVEL
 def play_rock_paper_scissors_level():
     """
@@ -455,7 +417,116 @@ def play_rock_paper_scissors_level():
         print("Congratulations! You have defeated All Mighty Paper O'Clipper and won the duel!")
     else:
         print("All Mighty Paper O'Clipper wins the duel. You have been defeated.")
-        
+
+
+# THE MAZE GAME
+def generate_maze_sequence(length):
+    """
+    Generate a random sequence of left (L) and right (R) directions for the maze.
+    """
+    directions = ['L', 'R']  # Left and right directions
+    maze_sequence = [random.choice(directions) for _ in range(length)]
+    return maze_sequence
+
+
+def play_word_maze_level():
+    """
+    Function to play the word maze game.
+    """
+    maze_sequence = generate_maze_sequence(5)  # Generate a maze sequence of length 5
+    max_wrong_attempts = 3
+    correct_answers = 0
+    wrong_attempts = 0
+
+    print(Back.WHITE + Fore.RED + "\nWelcome to the Word Maze Game!" + Style.RESET_ALL)
+    print("Waldo's cage is at the end of the maze.")
+    print("The maze is collapsing, and you need to guess the correct sequence of left (L) and right (R) turns.")
+    print("Be careful! Making too many wrong guesses might lead to unexpected dangers!")
+
+    # Gameplay loop
+    index = 0
+    while index < len(maze_sequence):
+        direction = maze_sequence[index]
+        print(f"Guess the direction ({index + 1}/5): ")
+        player_guess = input().upper()
+
+        # Validate player's input
+        if player_guess not in ['L', 'R']:
+            print(Fore.RED + "Invalid input. Please enter 'L' for left or 'R' for right." + Style.RESET_ALL)
+            continue
+
+        # Check if player's guess matches the maze sequence
+        if player_guess == direction:
+            print("Correct guess!")
+            correct_answers += 1
+            index += 1
+        else:
+            print(Fore.MAGENTA + "Incorrect guess. The maze seems to shift unexpectedly!" + Style.RESET_ALL)
+            print(f"Oh no, that was a dead end! You have {max_wrong_attempts - wrong_attempts - 1} attempts remaining.")
+            wrong_attempts += 1
+
+            # Check if maximum wrong attempts reached
+            if wrong_attempts >= max_wrong_attempts:
+                print("The maze has collapsed completely!")
+                return  # Exit the function as the game is lost
+
+    # If the loop completes without returning, the player reached Waldo's cage
+    print("Congratulations! You've reached Waldo's cage!")
+
+# WORDS FUNCTIONS/S
+
+def get_random_word():
+    """
+    Function to retrieve a random word from the Google Sheet.
+    """
+    # Get all words from the sheet
+    words_data = worksheet_words.get_all_values()[1:]  # Exclude header row
+    
+    # Shuffle the words
+    shuffle(words_data)
+    
+    # Select a random word
+    random_word = sample(words_data, 1)[0]
+    
+    # Extract the unscrambled word
+    unscrambled_word = random_word[0]
+    
+    # Extract the scrambled word
+    scrambled_word = random_word[1]
+    print(scrambled_word + "  " + unscrambled_word)
+    return unscrambled_word, scrambled_word
+
+
+def play_say_magic_word_level():
+    """
+    Function to play the word guessing game.
+    """
+    unscrambled_word, scrambled_word = get_random_word()
+    print("\nCongratulations, adventurer! You stand before Waldo's cage.")
+    print(f"To unlock the cage and free Waldo, you must speak the magic word within 1 minute.")
+    print("Be warned, you have only 1 minute to guess the word!")
+    print("Every 10 seconds, a warning will be issued.")
+    print(f"\nScrambled word: {scrambled_word}")
+
+    # Set the start time
+    start_time = time.time()
+    end_time = start_time + 60  # 1 minute
+
+    # Gameplay loop
+    while time.time() < end_time:
+        remaining_time = int(end_time - time.time())
+        if remaining_time % 10 == 0:
+            print(f"Time remaining: {remaining_time} seconds.")
+        player_guess = input("Enter the unscrambled magic word: ").strip().lower()
+        if player_guess == unscrambled_word:
+            print("\nCongratulations! You've spoken the magic word!")
+            print("Waldo's cage is now unlocked. You have freed him!")
+            return True
+
+    # If time is up, print the remaining time
+    print(f"\nTime's up! The cage remains locked. Waldo remains trapped. Time remaining: {remaining_time} seconds.")
+    return False
+
 
 # MAIN FUNCTION
 def main():
@@ -463,9 +534,11 @@ def main():
     Main function to orchestrate the game flow.
     """
 
-    #play_password_level()
-    #play_riddle_level()
+    play_password_level()
+    play_riddle_level()
     play_rock_paper_scissors_level()
+    play_word_maze_level()
+    play_say_magic_word_level()
 
 if __name__ == "__main__":
     main()
