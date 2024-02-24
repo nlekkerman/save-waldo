@@ -243,7 +243,6 @@ def print_centered_text(text, color):
 
 """
 # PLAY GAME CALLS
-upload_riddles_to_worksheet(worksheet_riddles)
 greet_player_and_explain_game()
 collect_player_info()
 time.sleep(0.5)
@@ -351,6 +350,7 @@ def play_password_level():
               + Style.RESET_ALL)
         print(Fore.RED + "Please try again." + Style.RESET_ALL)
 
+
 #RIDDLE FUNCTIONS
 def play_riddle_level():
     """
@@ -368,9 +368,10 @@ def play_riddle_level():
     # Set a random seed for reproducibility
     random.seed()
     random_riddle = random.choice(riddles_data)
-    riddle, answer = random_riddle
+    riddle, answer, hint_one, hint_two, hint_three = random_riddle
 
     attempts = 5
+    hint_index = 0  # Initialize hint index
     while attempts > 0:
         print("\nRiddle:", riddle)
         try:
@@ -386,18 +387,85 @@ def play_riddle_level():
                 attempts -= 1
                 if attempts > 0:
                     print("Incorrect answer. You have", attempts, "attempts remaining.")
+                    # Display hint based on hint index
+                    if hint_index == 0:
+                        print("Hint One:", hint_one)
+                    elif hint_index == 1:
+                        print("Hint Two:", hint_two)
+                    elif hint_index == 2:
+                        print("Hint Three:", hint_three)
+                    hint_index += 1  # Increment hint index for next attempt
                 else:
                     print("Incorrect answer. You have run out of attempts. The ghost of Enigma has defeated you.")
         except ValueError as e:
             print(e)
+
+# ROCK_PAPER_SCISSORS LEVEL
+def play_rock_paper_scissors_level():
+    """
+    Function to play the rock-paper-scissors level against the enchanted knight, All Mighty Paper O'Clipper.
+    """
+    print("\nYou are one step away from entering the dark chamber where our friend Waldo is imprisoned.")
+    print("In front of the doors stands an enchanted knight known as All Mighty Paper O'Clipper.")
+    print("He challenges you to a duel with rock-paper-scissors to pass.")
+    print("You have to beat him in a duel to 3 wins to proceed.")
+
+    options = ['rock', 'paper', 'scissors']
+    player_wins = 0
+    computer_wins = 0
+
+    while player_wins < 3 and computer_wins < 3:
+        computer_choice = random.choice(options)
+
+        player_choice = input("Enter your choice (r for rock, p for paper, s for scissors): ").lower()
+
+        # Validate user input
+        if player_choice not in ['r', 'p', 's']:
+            print("Invalid input. Please enter 'r', 'p', or 's'.")
+            continue
+
+        # Convert player choice to full word
+        if player_choice == 'r':
+            player_choice = 'rock'
+        elif player_choice == 'p':
+            player_choice = 'paper'
+        else:
+            player_choice = 'scissors'
+
+        print("All Mighty Paper O'Clipper's choice:", computer_choice)
+
+        # Determine the winner
+        if player_choice == computer_choice:
+            print("It's a tie!")
+        elif (player_choice == 'rock' and computer_choice == 'scissors') or \
+             (player_choice == 'paper' and computer_choice == 'rock') or \
+             (player_choice == 'scissors' and computer_choice == 'paper'):
+            print("Congratulations! You win this round!")
+            player_wins += 1
+        else:
+            print("All Mighty Paper O'Clipper wins this round!")
+            computer_wins += 1
+
+        # Display the current score
+        print("Your Score:", player_wins)
+        print("All Mighty Paper O'Clipper's Score:", computer_wins)
+
+    # Determine the overall winner
+    if player_wins == 3:
+        print("Congratulations! You have defeated All Mighty Paper O'Clipper and won the duel!")
+    else:
+        print("All Mighty Paper O'Clipper wins the duel. You have been defeated.")
+        
+
 # MAIN FUNCTION
 def main():
     """
     Main function to orchestrate the game flow.
     """
 
-   # play_password_level()
-    play_riddle_level()
+    #play_password_level()
+    #play_riddle_level()
+    play_rock_paper_scissors_level()
 
 if __name__ == "__main__":
     main()
