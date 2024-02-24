@@ -3,7 +3,6 @@ Module: lock_cracker_game
 
 This module contains functions related to the Lock Cracker game.
 """
-import os
 import shutil
 import random
 import time
@@ -31,19 +30,18 @@ WORKSHEET_NAME = 'players'
 worksheet = SHEET.worksheet(WORKSHEET_NAME)
 
 
-# Inputs related functions
+# Inputs related function
 def input_for_saving_info(prompt):
     """
-    Prompt the user for input with a green background.
+    Prompt the user for input with explanatory text and a green background.
 
     Parameters:
     - prompt (str): The prompt message to display to the user.
 
     Returns:
     - str: The user's input.
-
-
     """
+
     # Print the prompt with a green background
     print(Fore.YELLOW + prompt + Style.RESET_ALL, end='')
     # Get user input
@@ -77,21 +75,33 @@ def greet_player_and_explain_game():
     """
     Greets the player and explains the game with colors and delays.
     """
-    print(Fore.GREEN + "Welcome, adventurer!" + Fore.RESET)
-    time.sleep(1)
-    print(Fore.MAGENTA +
-          "In this quest, we will go through challenges to save Waldo,"
-          + Fore.RESET)
-    time.sleep(1)
-    print(Fore.MAGENTA +
-          "who has been captured by the evil princess Vladislava."
-          + Fore.RESET)
-    time.sleep(1)
-    print(Fore.MAGENTA + "You are Waldo's last hope!" + Fore.RESET)
+    print(Fore.GREEN + Back.WHITE + "WELCOME ADVENTURER!" + Style.RESET_ALL)
     time.sleep(1)
     print(
         Fore.MAGENTA +
-        "Are you ready to embark on this adventure?" + Fore.RESET)
+        "Before we proceed, let me provide some context:" + Style.RESET_ALL)
+    print(
+        Fore.MAGENTA + "You remeber your friend Waldo, right?"
+        + Style.RESET_ALL)
+    time.sleep(1)
+    print(Fore.MAGENTA +
+          "Nobody knows where Waldo was,"
+          "because he was ensnared by the crazy Queen Vladislava."
+          + Style.RESET_ALL)
+    time.sleep(1)
+    print(Fore.MAGENTA + "She ruled the Bureaucracy Kingdom from her castle"
+          " on the top of Paper Mountain." + Style.RESET_ALL)3121
+    time.sleep(1)
+    print(Fore.MAGENTA +
+          "In this quest, we will go through challenges to save Waldo,"
+          + Style.RESET_ALL)
+    time.sleep(1)
+    print(Fore.MAGENTA + "You are Waldo's last hope!" + Style.RESET_ALL)
+    time.sleep(1)
+    print(Fore.MAGENTA + "Are you ready to embark on this adventure?"
+          + Style.RESET_ALL)
+
+    print()
 
 
 def collect_player_info():
@@ -106,19 +116,18 @@ def collect_player_info():
 
     # Append player information to the worksheet
     worksheet.append_row([name, location])
-
+    print()
     print(f"Welcome to adventure {Fore.YELLOW}{name}{Fore.RESET} of "
           f"{Fore.YELLOW}{location}{Fore.RESET} let's save the Waldo.")
 
 
 def print_password_challenge_instructions():
     """
-    Print the game rules with alternating colors.
+    Print the first game instructions.
 
     Returns:
         None
     """
-    rules_colors = [Fore.GREEN, Fore.YELLOW]
     instructions = [
         "You find yourself standing in front of the imposing Dark Castle,"
         " shrouded in darkness and mystery.",
@@ -129,20 +138,47 @@ def print_password_challenge_instructions():
         " a formidable 4-digit password lock.",
         "The password consists of numbers ranging from 0 to 5,"
         " each digit adding to the challenge.",
-        "Enter a 4-digit number without spaces to make your guess and unlock Waldo's prison.",
+        "Enter a 4-digit number without spaces to make your guess"
+        " and unlock Waldo's prison.",
         "Good luck on your daring mission!"
     ]
+    color = Fore.GREEN  # Set green color for the text
 
-    for index, rule in enumerate(instructions):
-        color = rules_colors[index % len(rules_colors)]
+    for rule in instructions:
         padding_rule = (TERMINAL_WIDTH - len(rule)) // 2
         centered_rule = f"{'' * padding_rule}{rule}{' ' * padding_rule}"
-        print(f"{color}{Style.BRIGHT}{centered_rule}{Fore.RESET}{Back.RESET}")
+        print(f"{color}{Style.BRIGHT}{centered_rule}{Style.RESET_ALL}")
+
+
+def print_centered_text(text, color):
+    """
+    Print centered text with specified color.
+
+    Args:
+        text (str): The text to be centered and printed.
+        color (str): The color of the text.
+
+    Returns:
+        None
+    """
+    padding_for_centered = (TERMINAL_WIDTH - len(text)) // 2
+
+    print(
+        f"{Back.WHITE}{color}"
+        f"{' ' * padding_for_centered}"
+        f"{text}"
+        f"{' ' * padding_for_centered}"
+        f"{Style.RESET_ALL}"
+    )
+    print()
 
 
 # PLAY GAME CALLS
 greet_player_and_explain_game()
 collect_player_info()
+time.sleep(0.5)
+print_centered_text("Challenge one, CRACK THE LOCK!!", Fore.RED)
+time.sleep(0.5)
 print_password_challenge_instructions()
 
 
@@ -185,7 +221,7 @@ def play_password_level():
 
     print("Welcome to the Password Guessing Game!")
     print("Try to guess the 4-digit password.")
-    print("Here's a hint: You have these two numbers in the password:", hint_numbers)
+    print("Hint: You have these two numbers in the password:", hint_numbers)
 
     # Game loop
     while True:
