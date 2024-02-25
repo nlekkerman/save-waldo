@@ -202,13 +202,13 @@ def print_centered_text(text, color):
     print()
 
 
-# PLAY GAME CALLS
+"""# PLAY GAME CALLS
 greet_player_and_explain_game()
 collect_player_info()
 time.sleep(0.5)
 print_centered_text("Challenge one, CRACK THE LOCK!!", Fore.RED)
 time.sleep(0.5)
-print_password_challenge_instructions()
+print_password_challenge_instructions()"""
 
 
 # PASSWORD LEVEL FUNCTIONS
@@ -227,7 +227,7 @@ def provide_hint(password):
     return hint_numbers
 
 
-def reveal_password(password, guessed_numbers, revealed_positions):
+def reveal_password(password, revealed_positions):
     """
     Reveals the correct numbers guessed by the player.
     """
@@ -293,9 +293,10 @@ def play_password_level():
         if guess == password:
             print(Fore.WHITE + Back.GREEN +
                   "Congratulations! You are in: " + Style.RESET_ALL + ' ',
-                  Fore.YELLOW + Back.RED + "Password was " + ''.join(map(str, password))
+                  Fore.YELLOW + Back.RED + "Password was "
+                  + ''.join(map(str, password))
                   + Style.RESET_ALL)
-            break
+            return True
 
         # Update revealed positions if any correct number is guessed
         for i in range(4):
@@ -303,7 +304,7 @@ def play_password_level():
                 revealed_positions.append(i)
 
         revealed_password = reveal_password(
-            password, hint_numbers, revealed_positions)
+            password, revealed_positions)
         print(Fore.RED + "Incorrect guess."
               " Here's the revealed part of the password:"
               + Fore.RESET + Fore.YELLOW, revealed_password
@@ -311,12 +312,11 @@ def play_password_level():
         print(Fore.RED + "Please try again." + Style.RESET_ALL)
 
 
-#RIDDLE FUNCTIONS
+# RIDDLE FUNCTIONS
 def play_riddle_level():
     """
     Function to play the riddle level.
     """
-    global SHEET
 
     print("\nYou have entered the castle and encountered the ghost of Enigma.")
     print("To proceed further, you must answer a riddle correctly.")
@@ -334,35 +334,34 @@ def play_riddle_level():
     hint_index = 0  # Initialize hint index
     while attempts > 0:
         print("\nRiddle:", riddle)
-        try:
-            user_answer = input("Your answer: ")
-            # Validate user input
-            if not re.match("^[a-zA-Z0-9\s]*$", user_answer):
-                raise ValueError("Invalid input. Answer can only contain letters, spaces, and numbers.")
-            # Check if user's answer is correct
-            if user_answer.lower() == answer.lower():
-                print("Congratulations! You have answered correctly.")
-                break
-            else:
-                attempts -= 1
-                if attempts > 0:
-                    print("Incorrect answer. You have", attempts, "attempts remaining.")
-                    # Display hint based on hint index
-                    if hint_index == 0:
-                        print("Hint One:", hint_one)
-                    elif hint_index == 1:
-                        print("Hint Two:", hint_two)
-                    elif hint_index == 2:
-                        print("Hint Three:", hint_three)
-                    hint_index += 1  # Increment hint index for next attempt
-                else:
-                    print("Incorrect answer. You have run out of attempts. The ghost of Enigma has defeated you.")
-        except ValueError as e:
-            print(e)
+        user_answer = input("Your answer: ")
+        # Validate user input
+        if not re.match("^[a-zA-Z0-9\s]*$", user_answer):
+            print("Invalid input. Answer can only contain letters,"
+                  " spaces, and numbers.")
+            continue
+
+        if user_answer.lower() == answer.lower():
+            print("Congratulations! You have answered correctly.")
+            return True
+        attempts -= 1
+        if attempts > 0:
+            print("Incorrect!. You have", attempts, "attempts remaining.")
+            # Display hint based on hint index
+            if hint_index == 0:
+                print("Hint One:", hint_one)
+            elif hint_index == 1:
+                print("Hint Two:", hint_two)
+            elif hint_index == 2:
+                print("Hint Three:", hint_three)
+            hint_index += 1  # Increment hint index for next attempt
+        else:
+            print("Incorrect answer. You have run out of attempts. The ghost of Enigma has defeated you.")
+            return False
+
+    return False  # In case the loop ends without the player answering correctly
 
 
-
-# ROCK_PAPER_SCISSORS LEVEL
 def play_rock_paper_scissors_level():
     """
     Function to play the rock-paper-scissors level against the enchanted knight, All Mighty Paper O'Clipper.
@@ -378,6 +377,7 @@ def play_rock_paper_scissors_level():
 
     while player_wins < 3 and computer_wins < 3:
         computer_choice = random.choice(options)
+        print(computer_choice)
 
         player_choice = input("Enter your choice (r for rock, p for paper, s for scissors): ").lower()
 
@@ -396,18 +396,21 @@ def play_rock_paper_scissors_level():
 
         print("All Mighty Paper O'Clipper's choice:", computer_choice)
 
-        # Determine the winner
+            # Determine the winner
         if player_choice == computer_choice:
             print("It's a tie!")
-        elif (player_choice == 'rock' and computer_choice == 'scissors') or \
-             (player_choice == 'paper' and computer_choice == 'rock') or \
-             (player_choice == 'scissors' and computer_choice == 'paper'):
+        elif player_choice == 'rock' and computer_choice == 'scissors':
+            print("Congratulations! You win this round!")
+            player_wins += 1
+        elif player_choice == 'paper' and computer_choice == 'rock':
+            print("Congratulations! You win this round!")
+            player_wins += 1
+        elif player_choice == 'scissors' and computer_choice == 'paper':
             print("Congratulations! You win this round!")
             player_wins += 1
         else:
             print("All Mighty Paper O'Clipper wins this round!")
             computer_wins += 1
-
         # Display the current score
         print("Your Score:", player_wins)
         print("All Mighty Paper O'Clipper's Score:", computer_wins)
@@ -415,11 +418,13 @@ def play_rock_paper_scissors_level():
     # Determine the overall winner
     if player_wins == 3:
         print("Congratulations! You have defeated All Mighty Paper O'Clipper and won the duel!")
+        return True
     else:
         print("All Mighty Paper O'Clipper wins the duel. You have been defeated.")
+        return False
 
 
-# THE MAZE GAME
+# THE WORD MAZE GAME
 def generate_maze_sequence(length):
     """
     Generate a random sequence of left (L) and right (R) directions for the maze.
@@ -427,6 +432,15 @@ def generate_maze_sequence(length):
     directions = ['L', 'R']  # Left and right directions
     maze_sequence = [random.choice(directions) for _ in range(length)]
     return maze_sequence
+
+
+def print_warning():
+    """
+    Prints a warning message every 10 seconds.
+    """
+    while True:
+        print("Warning: Time is passing!")
+        time.sleep(10)  # Sleep for 10 seconds before printing the next warning
 
 
 def play_word_maze_level():
@@ -437,6 +451,7 @@ def play_word_maze_level():
     max_wrong_attempts = 3
     correct_answers = 0
     wrong_attempts = 0
+    print(maze_sequence)
 
     print(Back.WHITE + Fore.RED + "\nWelcome to the Word Maze Game!" + Style.RESET_ALL)
     print("Waldo's cage is at the end of the maze.")
@@ -461,20 +476,24 @@ def play_word_maze_level():
             correct_answers += 1
             index += 1
         else:
-            print(Fore.MAGENTA + "Incorrect guess. The maze seems to shift unexpectedly!" + Style.RESET_ALL)
-            print(f"Oh no, that was a dead end! You have {max_wrong_attempts - wrong_attempts - 1} attempts remaining.")
+            print(
+                Fore.MAGENTA + 
+                "Incorrect guess. The maze seems to shift unexpectedly!" 
+                + Style.RESET_ALL)
+            print(f"Oh no, that was a dead end! You have "
+                  f"{max_wrong_attempts - wrong_attempts - 1} attempts remaining.")
             wrong_attempts += 1
 
             # Check if maximum wrong attempts reached
             if wrong_attempts >= max_wrong_attempts:
                 print("The maze has collapsed completely!")
-                return  # Exit the function as the game is lost
+                return False
 
-    # If the loop completes without returning, the player reached Waldo's cage
     print("Congratulations! You've reached Waldo's cage!")
+    return True
 
-# WORDS FUNCTIONS/S
 
+# MAGIC WORDS FUNCTIONS/S
 def get_random_word():
     """
     Function to retrieve a random word from the Google Sheet.
@@ -501,31 +520,63 @@ def play_say_magic_word_level():
     """
     Function to play the word guessing game.
     """
+
     unscrambled_word, scrambled_word = get_random_word()
     print("\nCongratulations, adventurer! You stand before Waldo's cage.")
-    print(f"To unlock the cage and free Waldo, you must speak the magic word within 1 minute.")
+    print("To unlock the cage and free Waldo,"
+          "you must speak the magic word within 1 minute.")
     print("Be warned, you have only 1 minute to guess the word!")
-    print("Every 10 seconds, a warning will be issued.")
+    print("Every guess, a warning will be issued.")
     print(f"\nScrambled word: {scrambled_word}")
 
-    # Set the start time
     start_time = time.time()
     end_time = start_time + 60  # 1 minute
 
-    # Gameplay loop
-    while time.time() < end_time:
-        remaining_time = int(end_time - time.time())
-        if remaining_time % 10 == 0:
-            print(f"Time remaining: {remaining_time} seconds.")
-        player_guess = input("Enter the unscrambled magic word: ").strip().lower()
+    while True:
+        current_time = time.time()
+        remaining_time = end_time - current_time
+
+        if remaining_time >= 0:
+            print(f"\nRemaining time: {int(remaining_time)} seconds.")
+
+        if current_time >= end_time:
+            print("\nTime's up! "
+                  "The cage remains locked. "
+                  "Waldo remains trapped.")
+
+            return False
+
+        player_guess = input(
+            "Enter the unscrambled magic word: ").strip().lower()
         if player_guess == unscrambled_word:
             print("\nCongratulations! You've spoken the magic word!")
             print("Waldo's cage is now unlocked. You have freed him!")
             return True
 
-    # If time is up, print the remaining time
-    print(f"\nTime's up! The cage remains locked. Waldo remains trapped. Time remaining: {remaining_time} seconds.")
-    return False
+
+# PLAY GAME FUNCTIION
+def play_game():
+    if not play_password_level():
+        print("Sorry, you failed to complete the game. Better luck next time!")
+        return
+
+    if not play_riddle_level():
+        print("Sorry, you failed to complete the game. Better luck next time!")
+        return
+
+    if not play_rock_paper_scissors_level():
+        print("Sorry, you failed to complete the game. Better luck next time!")
+        return
+
+    if not play_word_maze_level():
+        print("Sorry, you failed to complete the game. Better luck next time!")
+        return
+
+    if not play_say_magic_word_level():
+        print("Sorry, you failed to complete the game. Better luck next time!")
+        return
+
+    print("Congratulations! You've completed all levels of the game!")
 
 
 # MAIN FUNCTION
@@ -533,12 +584,8 @@ def main():
     """
     Main function to orchestrate the game flow.
     """
+    play_game()
 
-    play_password_level()
-    play_riddle_level()
-    play_rock_paper_scissors_level()
-    play_word_maze_level()
-    play_say_magic_word_level()
 
 if __name__ == "__main__":
     main()
