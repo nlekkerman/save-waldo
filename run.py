@@ -202,13 +202,13 @@ def print_centered_text(text, color):
     print()
 
 
-"""# PLAY GAME CALLS
+# PLAY GAME CALLS
 greet_player_and_explain_game()
 collect_player_info()
 time.sleep(0.5)
 print_centered_text("Challenge one, CRACK THE LOCK!!", Fore.RED)
 time.sleep(0.5)
-print_password_challenge_instructions()"""
+print_password_challenge_instructions()
 
 
 # PASSWORD LEVEL FUNCTIONS
@@ -252,21 +252,21 @@ def play_password_level():
     print(Fore.RESET + Back.YELLOW + Fore.WHITE +
           "   ADVENTURER   " + Style.RESET_ALL)
     print()
-    time.sleep(1)
+    time.sleep(0.5)
     print(Back.WHITE + Fore.CYAN +
           " Now, I need you to stay focused! " + Style.RESET_ALL)
     print()
-    time.sleep(1)
+    time.sleep(0.5)
     print(Back.WHITE + Fore.CYAN +
           " You have to crack this lock to enter this castle! "
           + Style.RESET_ALL)
     print()
-    time.sleep(1)
+    time.sleep(0.5)
     print(Back.WHITE + Fore.CYAN +
           " Let's go and crack this 4-digit password! "
           + Style.RESET_ALL)
     print()
-    time.sleep(1)
+    time.sleep(0.5)
     print(Back.YELLOW + Fore.WHITE +
           " Hint: You have these two numbers in the password: "
           + Style.RESET_ALL +
@@ -277,20 +277,34 @@ def play_password_level():
     # Initialize revealed positions to an empty list
     revealed_positions = []
 
+    # Initialize attempts
+    attempts = 10
+
     # Game loop
-    while True:
+    while attempts > 0:
         # Ask the player to guess the password
         print_input_instructions(
-            "Enter your guess (4-digit number without spaces): ", Fore.YELLOW)
-        guess = input_for_password_level("Enter 4-digits without spaces): ")
+            "Enter your guess (4-digit number without spaces). ")
+        guess = input_for_password_level("Enter 4-digits without spaces: "
+                                         + Fore.RESET)
+        print(f"Attempts left: {Fore.BLUE}{attempts}\n", Fore.RESET)
 
         # Check if the guess is correct
         if len(guess) != 4 or not guess.isdigit():
-            print("Please enter a valid 4-digit number without spaces.")
+            print(Fore.RED +
+                  "Please enter a valid 4-digit number without spaces."
+                  + Fore.RESET)
             continue
-
+        print(Back.YELLOW + Fore.WHITE +
+              " Hint: You have these two numbers in the password: "
+              + Style.RESET_ALL +
+              Fore.GREEN +
+              f'({", ".join(map(str, hint_numbers))})' +
+              Fore.RESET)
         guess = [int(digit) for digit in guess]
+        attempts -= 1
         if guess == password:
+            print()
             print(Fore.WHITE + Back.GREEN +
                   "Congratulations! You are in: " + Style.RESET_ALL + ' ',
                   Fore.YELLOW + Back.RED + "Password was "
@@ -305,11 +319,16 @@ def play_password_level():
 
         revealed_password = reveal_password(
             password, revealed_positions)
-        print(Fore.RED + "Incorrect guess."
-              " Here's the revealed part of the password:"
+        print(Fore.RED + "Incorrect guess! The password:"
               + Fore.RESET + Fore.YELLOW, revealed_password
               + Style.RESET_ALL)
-        print(Fore.RED + "Please try again." + Style.RESET_ALL)
+        print(Fore.RED + f"Attempts left: {attempts}. Please try again."
+              + Style.RESET_ALL)
+
+    print(Fore.RED +
+          "Sorry, you've run out of attempts. Better luck next time!"
+          + Fore.RESET)
+    return False
 
 
 # RIDDLE FUNCTIONS
@@ -318,12 +337,54 @@ def play_riddle_level():
     Function to play the riddle level.
     """
 
-    print("\nYou have entered the castle and encountered the ghost of Enigma.")
-    print("To proceed further, you must answer a riddle correctly.")
-    print("You have 5 attempts to answer the riddle.")
+    print()
+    print(Back.WHITE + Fore.GREEN +
+          "You've completed the first step to save Waldo!"
+          + Style.RESET_ALL)
+    time.sleep(0.5)
+    print()
+    print(Back.WHITE + Fore.GREEN +
+          "You've cracked the lock and you have entered the castle and encountered the ghost called Enigma."
+          + Style.RESET_ALL)
+    time.sleep(0.5)
+    print()
+    print(Back.WHITE + Fore.GREEN +
+          "Now Enigma, once a powerful wizard,"
+          " a slave of the Queen of Bureaucracy,"
+          " stares at you with hollow eyes."
+          + Style.RESET_ALL)
+    time.sleep(0.5)
+    print()
+    print(Back.WHITE + Fore.GREEN +
+          "He has a deadly challenge for you." + Style.RESET_ALL)
+    time.sleep(0.5)
+    print()
+    print(Back.WHITE + Fore.GREEN +
+          "He has a riddle for you. If you answer correctly, you can proceed,"
+          + Style.RESET_ALL)
+    time.sleep(0.5)
+    print()
+    print(Back.WHITE + Fore.GREEN
+          + "but if you answer wrongly, he will enchant you. "
+          + Style.RESET_ALL)
+    time.sleep(0.5)
+    print()
+    print(Back.WHITE + Fore.GREEN +
+          "And you will spend the rest of your life"
+          " as a printer machine in the Queen's office."
+          + Style.RESET_ALL)
+    time.sleep(0.5)
+    print()
+    print(Back.WHITE + Fore.GREEN + "You have 5 attempts to answer the riddle." 
+          + Style.RESET_ALL)
+    time.sleep(0.5)
+    print()
+    print(Back.WHITE + Fore.GREEN +
+          "You have 5 attempts to answer the riddle." + Style.RESET_ALL)
+    print()
 
     # Fetch riddles from the worksheet
-    riddles_data = worksheet_riddles.get_all_values()[1:]  # Exclude header row
+    riddles_data = worksheet_riddles.get_all_values()[1:]
 
     # Set a random seed for reproducibility
     random.seed()
@@ -333,33 +394,44 @@ def play_riddle_level():
     attempts = 5
     hint_index = 0  # Initialize hint index
     while attempts > 0:
-        print("\nRiddle:", riddle)
-        user_answer = input("Your answer: ")
+        print(Back.YELLOW + Fore.WHITE + " THE RIDDLE:   "
+              + Style.RESET_ALL)
+        print(Back.BLUE + Fore.WHITE + riddle + Style.RESET_ALL)
+        user_answer = input_for_saving_info("Enter the Riddle: ")
         # Validate user input
-        if not re.match("^[a-zA-Z0-9\s]*$", user_answer):
-            print("Invalid input. Answer can only contain letters,"
-                  " spaces, and numbers.")
+        if not re.match(r"^[a-zA-Z\s]*$", user_answer):
+            print(Fore.RED + "Invalid input. Answer can only contain letters,"
+                  " spaces, and numbers." + Fore.RESET)
             continue
 
         if user_answer.lower() == answer.lower():
-            print("Congratulations! You have answered correctly.")
+            print(Fore.GREEN + "Congratulations! You have answered correctly." 
+                  + Fore.RESET)
             return True
         attempts -= 1
         if attempts > 0:
-            print("Incorrect!. You have", attempts, "attempts remaining.")
+            print(Fore.RED + 
+                  "Incorrect!. You have", attempts, "attempts remaining." 
+                  + Fore.RESET)
             # Display hint based on hint index
             if hint_index == 0:
-                print("Hint One:", hint_one)
+                print(Fore.GREEN + "Hint One:", hint_one + Fore.RESET)
             elif hint_index == 1:
-                print("Hint Two:", hint_two)
+                print(Fore.GREEN + "Hint Two:", hint_two + Fore.RESET)
             elif hint_index == 2:
-                print("Hint Three:", hint_three)
+                print(Fore.GREEN + "Hint Three:", hint_three + Fore.RESET)
             hint_index += 1  # Increment hint index for next attempt
         else:
-            print("Incorrect answer. You have run out of attempts. The ghost of Enigma has defeated you.")
+            print(Fore.RED + "Incorrect answer. You have run out of attempts."
+                  " The ghost of Enigma has defeated you." + Fore.RESET)
+            print()
+            print(Back.WHITE + Fore.RED + "RIDDLE WAS:" + Fore.RESET + " "
+                  + Fore.YELLOW + riddle + Style.RESET_ALL)
+            print()
+            
             return False
 
-    return False  # In case the loop ends without the player answering correctly
+    return False  # loop ends without the player answering correctly
 
 
 def play_rock_paper_scissors_level():
@@ -447,16 +519,21 @@ def play_word_maze_level():
     """
     Function to play the word maze game.
     """
-    maze_sequence = generate_maze_sequence(5)  # Generate a maze sequence of length 5
+    maze_sequence = generate_maze_sequence(5)
     max_wrong_attempts = 3
     correct_answers = 0
     wrong_attempts = 0
     print(maze_sequence)
 
-    print(Back.WHITE + Fore.RED + "\nWelcome to the Word Maze Game!" + Style.RESET_ALL)
+    print(
+        Back.WHITE + Fore.RED +
+        "\nWelcome to the Word Maze Game!"
+        + Style.RESET_ALL)
     print("Waldo's cage is at the end of the maze.")
-    print("The maze is collapsing, and you need to guess the correct sequence of left (L) and right (R) turns.")
-    print("Be careful! Making too many wrong guesses might lead to unexpected dangers!")
+    print("The maze is collapsing, and you need to guess"
+          " the correct sequence of left (L) and right (R) turns.")
+    print("Be careful! Making too many wrong guesses"
+          " might lead to unexpected dangers!")
 
     # Gameplay loop
     index = 0
@@ -467,7 +544,9 @@ def play_word_maze_level():
 
         # Validate player's input
         if player_guess not in ['L', 'R']:
-            print(Fore.RED + "Invalid input. Please enter 'L' for left or 'R' for right." + Style.RESET_ALL)
+            print(Fore.RED +
+                  "Invalid input. Please enter 'L' for left or 'R' for right."
+                  + Style.RESET_ALL)
             continue
 
         # Check if player's guess matches the maze sequence
@@ -477,11 +556,12 @@ def play_word_maze_level():
             index += 1
         else:
             print(
-                Fore.MAGENTA + 
-                "Incorrect guess. The maze seems to shift unexpectedly!" 
+                Fore.MAGENTA +
+                "Incorrect guess. The maze seems to shift unexpectedly!"
                 + Style.RESET_ALL)
             print(f"Oh no, that was a dead end! You have "
-                  f"{max_wrong_attempts - wrong_attempts - 1} attempts remaining.")
+                  f"{max_wrong_attempts - wrong_attempts - 1} "
+                  "attempts remaining.")
             wrong_attempts += 1
 
             # Check if maximum wrong attempts reached
@@ -500,16 +580,16 @@ def get_random_word():
     """
     # Get all words from the sheet
     words_data = worksheet_words.get_all_values()[1:]  # Exclude header row
-    
+
     # Shuffle the words
     shuffle(words_data)
-    
+
     # Select a random word
     random_word = sample(words_data, 1)[0]
-    
+
     # Extract the unscrambled word
     unscrambled_word = random_word[0]
-    
+
     # Extract the scrambled word
     scrambled_word = random_word[1]
     print(scrambled_word + "  " + unscrambled_word)
@@ -556,6 +636,13 @@ def play_say_magic_word_level():
 
 # PLAY GAME FUNCTIION
 def play_game():
+    """
+    Plays a multi-level game consisting of various challenges.
+
+    Returns:
+        None
+    """
+
     if not play_password_level():
         print("Sorry, you failed to complete the game. Better luck next time!")
         return
