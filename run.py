@@ -202,13 +202,13 @@ def print_centered_text(text, color):
     print()
 
 
-# PLAY GAME CALLS
+"""# PLAY GAME CALLS
 greet_player_and_explain_game()
 collect_player_info()
 time.sleep(0.5)
 print_centered_text("Challenge one, CRACK THE LOCK!!", Fore.RED)
 time.sleep(0.5)
-print_password_challenge_instructions()
+print_password_challenge_instructions()"""
 
 
 # PASSWORD LEVEL FUNCTIONS
@@ -436,10 +436,13 @@ def play_riddle_level():
 
 def play_rock_paper_scissors_level():
     """
-    Function to play the rock-paper-scissors level against the enchanted knight, All Mighty Paper O'Clipper.
+    Function to play the rock-paper-scissors level "
+    "against the enchanted knight, All Mighty Paper O'Clipper.
     """
-    print("\nYou are one step away from entering the dark chamber where our friend Waldo is imprisoned.")
-    print("In front of the doors stands an enchanted knight known as All Mighty Paper O'Clipper.")
+    print("\nYou are one step away from entering the dark chamber"
+          " where our friend Waldo is imprisoned.")
+    print("In front of the doors stands an enchanted knight known"
+          " as All Mighty Paper O'Clipper.")
     print("He challenges you to a duel with rock-paper-scissors to pass.")
     print("You have to beat him in a duel to 3 wins to proceed.")
 
