@@ -332,106 +332,79 @@ def play_password_level():
 
 
 # RIDDLE FUNCTIONS
-def play_riddle_level():
-    """
-    Function to play the riddle level.
-    """
 
-    print()
-    print(Back.WHITE + Fore.GREEN +
-          "You've completed the first step to save Waldo!"
-          + Style.RESET_ALL)
+def print_message(message, color=Fore.GREEN, background=Back.WHITE):
+    """Prints a message with specified color and background."""
+    print(Fore.RESET)
+    print(background + color + message + Style.RESET_ALL)
     time.sleep(0.5)
-    print()
-    print(Back.WHITE + Fore.GREEN +
-          "You've cracked the lock and you have entered the castle and encountered the ghost called Enigma."
-          + Style.RESET_ALL)
-    time.sleep(0.5)
-    print()
-    print(Back.WHITE + Fore.GREEN +
-          "Now Enigma, once a powerful wizard,"
-          " a slave of the Queen of Bureaucracy,"
-          " stares at you with hollow eyes."
-          + Style.RESET_ALL)
-    time.sleep(0.5)
-    print()
-    print(Back.WHITE + Fore.GREEN +
-          "He has a deadly challenge for you." + Style.RESET_ALL)
-    time.sleep(0.5)
-    print()
-    print(Back.WHITE + Fore.GREEN +
-          "He has a riddle for you. If you answer correctly, you can proceed,"
-          + Style.RESET_ALL)
-    time.sleep(0.5)
-    print()
-    print(Back.WHITE + Fore.GREEN
-          + "but if you answer wrongly, he will enchant you. "
-          + Style.RESET_ALL)
-    time.sleep(0.5)
-    print()
-    print(Back.WHITE + Fore.GREEN +
-          "And you will spend the rest of your life"
-          " as a printer machine in the Queen's office."
-          + Style.RESET_ALL)
-    time.sleep(0.5)
-    print()
-    print(Back.WHITE + Fore.GREEN + "You have 5 attempts to answer the riddle." 
-          + Style.RESET_ALL)
-    time.sleep(0.5)
-    print()
-    print(Back.WHITE + Fore.GREEN +
-          "You have 5 attempts to answer the riddle." + Style.RESET_ALL)
-    print()
 
-    # Fetch riddles from the worksheet
-    riddles_data = worksheet_riddles.get_all_values()[1:]
 
-    # Set a random seed for reproducibility
+def get_random_riddle(riddles_data):
+    """Selects a random riddle from a list of riddles."""
     random.seed()
-    random_riddle = random.choice(riddles_data)
-    riddle, answer, hint_one, hint_two, hint_three = random_riddle
+    return random.choice(riddles_data)
 
+
+def print_hint(hint):
+    """Prints a hint."""
+    print(Fore.GREEN + hint + Fore.RESET)
+
+
+def validate_answer(answer):
+    """Validates user's answer."""
+    return re.match(r"^[a-zA-Z\s]*$", answer)
+
+
+def play_riddle(riddle, answer, hints):
+    """Plays the riddle game."""
     attempts = 5
-    hint_index = 0  # Initialize hint index
+    hint_index = 0
+
     while attempts > 0:
-        print(Back.YELLOW + Fore.WHITE + " THE RIDDLE:   "
-              + Style.RESET_ALL)
-        print(Back.BLUE + Fore.WHITE + riddle + Style.RESET_ALL)
-        user_answer = input_for_saving_info("Enter the Riddle: ")
-        # Validate user input
-        if not re.match(r"^[a-zA-Z\s]*$", user_answer):
+        print_message(" THE RIDDLE:   ", Fore.WHITE, Back.YELLOW)
+        print_message(riddle, Fore.WHITE, Back.BLUE)
+
+        user_answer = input("Enter the answer: ")
+
+        if not validate_answer(user_answer):
             print(Fore.RED + "Invalid input. Answer can only contain letters,"
                   " spaces, and numbers." + Fore.RESET)
             continue
 
         if user_answer.lower() == answer.lower():
-            print(Fore.GREEN + "Congratulations! You have answered correctly." 
-                  + Fore.RESET)
+            print_message("Congratulations! You have answered correctly.")
             return True
+        
         attempts -= 1
+        
         if attempts > 0:
-            print(Fore.RED + 
-                  "Incorrect!. You have", attempts, "attempts remaining." 
-                  + Fore.RESET)
-            # Display hint based on hint index
-            if hint_index == 0:
-                print(Fore.GREEN + "Hint One:", hint_one + Fore.RESET)
-            elif hint_index == 1:
-                print(Fore.GREEN + "Hint Two:", hint_two + Fore.RESET)
-            elif hint_index == 2:
-                print(Fore.GREEN + "Hint Three:", hint_three + Fore.RESET)
-            hint_index += 1  # Increment hint index for next attempt
+            print(Fore.RED + f"Incorrect! You have {attempts} attempts remaining." + Fore.RESET)
+            if hint_index < len(hints):
+                print_hint(f"Hint {hint_index + 1}: {hints[hint_index]}")
+                hint_index += 1
         else:
-            print(Fore.RED + "Incorrect answer. You have run out of attempts."
-                  " The ghost of Enigma has defeated you." + Fore.RESET)
-            print()
-            print(Back.WHITE + Fore.RED + "RIDDLE WAS:" + Fore.RESET + " "
-                  + Fore.YELLOW + riddle + Style.RESET_ALL)
-            print()
-            
+            print_message("Incorrect answer. You have run out of attempts. The ghost of Enigma has defeated you.", Fore.RED)
+            print_message("RIDDLE WAS: " + riddle, Fore.YELLOW, Back.WHITE)
             return False
+    
+    return False
 
-    return False  # loop ends without the player answering correctly
+def play_riddle_level():
+    """Plays the riddle level."""
+    print_message("You've completed the first step to save Waldo!")
+    print_message("You've cracked the lock and you have entered the castle and encountered the ghost called Enigma.")
+    print_message("Now Enigma, once a powerful wizard, a slave of the Queen of Bureaucracy, stares at you with hollow eyes.")
+    print_message("He has a deadly challenge for you.")
+    print_message("He has a riddle for you. If you answer correctly, you can proceed, but if you answer wrongly, he will enchant you.")
+    print_message("And you will spend the rest of your life as a printer machine in the Queen's office.")
+    print_message("You have 5 attempts to answer the riddle.")
+    
+    # Fetch riddles from the worksheet
+    riddles_data = worksheet_riddles.get_all_values()[1:]
+    random_riddle = get_random_riddle(riddles_data)
+    riddle, answer, *hints = random_riddle
+    return play_riddle(riddle, answer, hints)
 
 
 def play_rock_paper_scissors_level():
@@ -439,12 +412,13 @@ def play_rock_paper_scissors_level():
     Function to play the rock-paper-scissors level "
     "against the enchanted knight, All Mighty Paper O'Clipper.
     """
-    print("\nYou are one step away from entering the dark chamber"
-          " where our friend Waldo is imprisoned.")
-    print("In front of the doors stands an enchanted knight known"
-          " as All Mighty Paper O'Clipper.")
-    print("He challenges you to a duel with rock-paper-scissors to pass.")
-    print("You have to beat him in a duel to 3 wins to proceed.")
+    print_message("You are one step away from entering the dark chamber"
+                  " where our friend Waldo is imprisoned.")
+    print_message("In front of the doors stands an enchanted knight known"
+                  " as All Mighty Paper O'Clipper.")
+    print_message("He challenges you to a duel"
+                  " with rock-paper-scissors to pass.")
+    print_message("You have to beat him in a duel to 3 wins to proceed.")
 
     options = ['rock', 'paper', 'scissors']
     player_wins = 0
