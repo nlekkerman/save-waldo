@@ -503,14 +503,14 @@ def play_word_maze_level():
     print(maze_sequence)
 
     print(
-        Back.WHITE + Fore.RED +
+        Back.RED + Fore.WHITE +
         "\nWelcome to the Word Maze Game!"
         + Style.RESET_ALL)
-    print("Waldo's cage is at the end of the maze.")
-    print("The maze is collapsing, and you need to guess"
-          " the correct sequence of left (L) and right (R) turns.")
-    print("Be careful! Making too many wrong guesses"
-          " might lead to unexpected dangers!")
+    print_message("Waldo's cage is at the end of the maze.")
+    print_message("The maze is collapsing, and you need to guess"
+                  " the correct sequence of left (L) and right (R) turns.")
+    print_message("Be careful! Making too many wrong guesses"
+                  " might lead to unexpected dangers!")
 
     # Gameplay loop
     index = 0
