@@ -144,13 +144,13 @@ def print_empty_line_with_color():
         None
     """
     terminal_width, _ = shutil.get_terminal_size()  # Get terminal width
-    line_length = terminal_width   # Adjust line length based on terminal width
+    line_length = terminal_width
 
     # Choose a random color for each character and print the line
     color_line = ""
     for _ in range(line_length):
-        color_code = random.randint(40, 47)  # ANSI color codes for background colors
-        color_line += f"\033[{color_code}m \033[0m"  # Reset color after each character
+        color_code = random.randint(40, 47)
+        color_line += f"\033[{color_code}m \033[0m"
     print(color_line)
 
 
@@ -210,31 +210,40 @@ def greet_player_and_explain_game():
     """
     Greets the player and explains the game with colors and delays.
     """
-    print(Fore.GREEN + Back.WHITE + "WELCOME ADVENTURER!" + Style.RESET_ALL)
+    print()
     time.sleep(1)
     print(
         Fore.MAGENTA +
-        "Before we proceed, let me provide some context:" + Style.RESET_ALL)
+        "In the realm of mysteries and shadows, a tale unfolds."
+        + Style.RESET_ALL)
     print(
-        Fore.MAGENTA + "You remeber your friend Waldo, right?"
+        Fore.MAGENTA +
+        "A dear friend, Waldo, lies ensnared in the clutches"
+        " of the enigmatic Queen Vladislava."
         + Style.RESET_ALL)
     time.sleep(1)
-    print(Fore.MAGENTA +
-          "Nobody knows where Waldo was,"
-          "because he was ensnared by the crazy Queen Vladislava."
-          + Style.RESET_ALL)
+    print(
+        Fore.MAGENTA +
+        "Her dominion, the Bureaucracy Kingdom, casts a looming shadow"
+        " from her castle atop the towering Paper Mountain."
+        + Style.RESET_ALL)
     time.sleep(1)
-    print(Fore.MAGENTA + "She ruled the Bureaucracy Kingdom from her castle"
-          " on the top of Paper Mountain." + Style.RESET_ALL)
+    print(
+        Fore.MAGENTA +
+        "In this odyssey, we beckon you forth, the beacon of hope"
+        " in Waldo's darkest hour."
+        + Style.RESET_ALL)
     time.sleep(1)
-    print(Fore.MAGENTA +
-          "In this quest, we will go through challenges to save Waldo,"
-          + Style.RESET_ALL)
+    print(
+        Fore.MAGENTA +
+        "For you are the last hope, the valiant soul,"
+        " destined to rescue him."
+        + Style.RESET_ALL)
     time.sleep(1)
-    print(Fore.MAGENTA + "You are Waldo's last hope!" + Style.RESET_ALL)
-    time.sleep(1)
-    print(Fore.MAGENTA + "Are you ready to embark on this adventure?"
-          + Style.RESET_ALL)
+    print(
+        Fore.MAGENTA +
+        "Are you prepared to embark on this perilous journey?"
+        + Style.RESET_ALL)
 
     print()
 
@@ -243,17 +252,48 @@ def collect_player_info():
     """
     Collect player's name and location, and save it to Google Sheets.
     """
-    print_input_instructions("Enter your name please", Fore.WHITE)
-    name = input_for_saving_info("Enter your name: ")
 
-    print_input_instructions("Enter your location please", Fore.WHITE)
-    location = input_for_saving_info("Enter your location: ")
+    def is_valid_input(input_string):
+        """
+        Function to check if input contains only letters and spaces.
+        """
+        return input_string.replace(" ", "").isalpha()
+
+    while True:
+        print_input_instructions("Enter your name please", Fore.WHITE)
+        try:
+            name = input_for_saving_info("Enter your name: ")
+
+            if not is_valid_input(name):
+                raise ValueError(
+                    "Invalid input. Please enter only letters and spaces.")
+        except ValueError as ve:
+            print_validation_error(str(ve))
+            continue
+        else:
+            break
+
+    while True:
+        print_input_instructions("Enter your location please", Fore.WHITE)
+        try:
+            location = input_for_saving_info("Enter your location: ")
+
+            if not is_valid_input(location):
+                raise ValueError(
+                    "Invalid input. Please enter only letters and spaces.")
+        except ValueError as ve:
+            print_validation_error(str(ve))
+            continue
+        else:
+            break
 
     # Append player information to the worksheet
     worksheet_players.append_row([name, location])
     print()
-    print(f"Welcome to adventure {Fore.YELLOW}{name}{Fore.RESET} of "
-          f"{Fore.YELLOW}{location}{Fore.RESET} let's save the Waldo.")
+    print(f"            Welcome to adventure {Back.MAGENTA}{Fore.YELLOW}{name}"
+          f"{Fore.RESET} of "
+          f"{Fore.YELLOW}{location}{Fore.RESET}{Back.RESET}. Let's save Waldo."
+          )
 
 
 def print_password_challenge_instructions():
@@ -286,6 +326,8 @@ def print_password_challenge_instructions():
 
 
 # PLAY GAME CALLS
+print()
+print_congratulations_message("WELCOME, ADVENTURER!")
 greet_player_and_explain_game()
 collect_player_info()
 time.sleep(0.5)
@@ -371,7 +413,7 @@ def play_password_level():
             "Enter your guess (4-digit number without spaces). ")
         guess = input_for_password_level("Enter 4-digits without spaces: "
                                          + Fore.RESET)
-        print(f"Attempts left: {Fore.BLUE}{attempts}\n", Fore.RESET)
+        print(Back.GREEN + f"Attempts left: {Fore.YELLOW}{attempts}\n", Fore.RESET)
 
         # Check if the guess is correct
         if len(guess) != 4 or not guess.isdigit():
@@ -392,6 +434,7 @@ def play_password_level():
             print_centered_text(
                 "Congratulations! You've unlocked the doors"
                 " to the castle atop the paper mountain.", Fore.GREEN)
+            print()
             return True
 
         # Update revealed positions if any correct number is guessed
@@ -405,7 +448,7 @@ def play_password_level():
               + Fore.RESET + Fore.YELLOW, revealed_password
               + Style.RESET_ALL)
         print(Fore.RED + f"Attempts left: {attempts}. Please try again."
-              + Style.RESET_ALL)
+              + Fore.RESET + Back.RESET)
 
     print(Fore.RED +
           "Sorry, you've run out of attempts. Better luck next time!"
@@ -479,7 +522,9 @@ def play_riddle(riddle, answer, hints):
                 "Incorrect answer. You have run out of attempts."
                 " The ghost of Enigma has defeated you.", Fore.RED)
             print_instruction_message(
-                "RIDDLE WAS: " + riddle, Fore.YELLOW, Back.WHITE)
+                "RIDDLE WAS: " + answer, Fore.YELLOW, Back.WHITE)
+            print()
+            print()
             return False
 
     return False
@@ -590,6 +635,7 @@ def play_rock_paper_scissors_level():
         print_centered_text("Congratulations! You have defeated"
                             " All Mighty Paper O'Clipper"
                             " and won the duel!", Fore.GREEN)
+        print()
         return True
 
     print("All Mighty Paper O'Clipper wins the duel. You have been defeated.")
@@ -673,9 +719,10 @@ def play_word_maze_level():
                 print(Back.WHITE + Fore.RED +
                       "The maze has collapsed completely!" + Style.RESET_ALL)
                 return False
-
+    print()
     print_centered_text(
         "Congratulations! You've reached Waldo's cage!", Fore.GREEN)
+    print()
     return True
 
 
@@ -768,23 +815,37 @@ def play_game():
     """
 
     if not play_password_level():
-        print("Sorry, you failed to complete the game. Better luck next time!")
+        print_centered_text(
+            "GAME OVER: The lock remains locked. Don't give up!"
+            " Try again to save Waldo.", Fore.RED)
         return
 
     if not play_riddle_level():
-        print("Sorry, you failed to complete the game. Better luck next time!")
+        print_centered_text(
+            "GAME OVER: The riddle remains unsolved."
+            " Don't lose hope! Keep trying to save Waldo.", Fore.RED)
         return
 
     if not play_rock_paper_scissors_level():
-        print("Sorry, you failed to complete the game. Better luck next time!")
+        print_centered_text("GAME OVER: The enchanted knight,"
+                            " All Mighty Paper O'Clipper,"
+                            " proves too formidable for now."
+                            " But fear not! Keep honing your skills"
+                            " and challenge him again to continue"
+                            " your quest to save Waldo.", Fore.RED)
         return
 
     if not play_word_maze_level():
-        print("Sorry, you failed to complete the game. Better luck next time!")
+        print_centered_text(
+            "GAME OVER: The maze remains unconquered."
+            " Don't give up! Keep striving to save Waldo.", Fore.RED)
         return
 
     if not play_magic_word_level():
-        print("Sorry, you failed to complete the game. Better luck next time!")
+        print_centered_text(
+            "GAME OVER: The magic word eludes you for now."
+            " But don't lose hope!"
+            " Keep searching for way to reach Waldo's cage.", Fore.RED)
         return
 
     print_congratulations_message("Congratulations, brave adventurer! "
