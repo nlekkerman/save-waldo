@@ -1,11 +1,27 @@
-<body>
-    <button onclick="window.location.reload()">Run Program</button>
-    <div id="terminal"></div>
+<body style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://img.freepik.com/free-photo/grunge-style-bank-vault_1048-13937.jpg?w=1380&t=st=1708202840~exp=1708203440~hmac=cb9b2e072aa60d2ac6e61536c9fb6bcbb631bb32fa1821a3f605c375dd2221d7');
+    background-size: cover;
+    background-position: center;
+    flex: 1;
+"> 
+    <h1 style="box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.7); color: white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-weight:700; position:fixed; top: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;font-size: 3.5em; padding-left: 50px; padding-right: 50px;">LOCK CRACKER</h1>
+
+    <div style="display: flex;flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+        <div id="terminal" style="border: 25px solid goldenrod; box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.7);"></div>
+        <button onclick="window.location.reload()" style="background-color: wheat;margin-top: 30px; color: black;border-radius: 25px; border:2px solid white;box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5) ">Run Program</button>
+
+    </div>
+    
 
     <script>
         var term = new Terminal({
-            cols: 116,
-            rows: 30
+            cols: 113,
+            rows: 24
         });
         term.open(document.getElementById('terminal'));
         term.writeln('Running startup command: python3 run.py');
@@ -25,3 +41,4 @@
         document.getElementsByClassName("xterm-helper-textarea")[0].focus();
     </script>
 </body>
+<footer style="box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.7); display: flex;flex-direction: column; justify-content: center; align-items: center;position: fixed; bottom: 0; height: 2em ; background-color: black; color: white; width: 100%; padding: 10px; text-align: center;">This is Lock Cracker game developed as portofolio project for CODE INSTITUTE by Nikola Simic and has no commercial purpose!</footer>

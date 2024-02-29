@@ -129,7 +129,6 @@ def print_congratulations_message(message):
     """
     init()  # Initialize colorama
 
-    clear_screen()
     print("\n" * 3)
     print_empty_line_with_color()
     print_centered_text(message, Fore.GREEN)
@@ -371,6 +370,7 @@ def play_password_level():
     """
     Orchestrates the password guessing game.
     """
+    clear_screen()
     print_separation_lines(Fore.RED)
     print_centered_text("Welcome to Challenge One: CRACK THE LOCK!!", Fore.RED)
     print_separation_lines(Fore.RED)
@@ -819,11 +819,11 @@ def play_magic_word_level():
 
         if player_guess == unscrambled_word:
             print_empty_line_with_color()
-            print_level_passed_message("\nCongratulations!"
-                                       " You've spoken the magic word!")
+            print_centered_text(
+                "Good Job! You've spoken the magic word!", Fore.GREEN)
             print_empty_line_with_color()
-
             print()
+            time.sleep(4)
 
             return True
 
@@ -839,6 +839,7 @@ def play_game():
         None
     """
     print()
+    clear_screen()
     print_congratulations_message("WELCOME, ADVENTURER!")
     greet_player_and_explain_game()
     collect_player_info()
@@ -897,10 +898,10 @@ def play_game():
         print_separation_lines(Fore.RED)
         print()
         return
-
+    clear_screen()
     print_congratulations_message("Congratulations, brave adventurer! "
                                   "You've freed Waldo from his dungeon!")
-    print_instruction_message("Congratulations!")
+    print_instruction_message("VICTORY!")
     print_instruction_message(
         "With your keen eye and determination,"
         " you've freed Waldo from his elusive captivity.")
@@ -927,8 +928,22 @@ def main():
     """
     Main function to orchestrate the game flow.
     """
-
-    play_game()
+    while True:
+        play_game()
+        while True:
+            print_input_instructions("Do you want to play again? (yes/no)")
+            restart = input_for_saving_info("Y or N: ").lower()
+            if restart == "y":
+                break
+            if restart == "n":
+                clear_screen()
+                print("\n"*7)
+                print_empty_line_with_color()
+                print_centered_text("Thank you for saving Waldo and good"
+                                    " luck in new adventures!", Fore.GREEN)
+                print_empty_line_with_color()
+                return
+            print("Invalid input. Please enter 'y' or 'n'.")
 
 
 if __name__ == "__main__":
