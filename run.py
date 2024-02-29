@@ -225,6 +225,40 @@ def greet_player_and_explain_game():
     print()
 
 
+def is_valid_input(name):
+    """
+    Function to validate the player's name.
+
+    Args:
+        name (str): The player's name to validate.
+
+    Returns:
+        bool: True if the name is valid, False otherwise.
+    """
+    if not name:
+        return False
+
+    has_alpha = False
+    previous_char = ''
+    for char in name:
+        if char.isalpha():
+            has_alpha = True
+            previous_char = char
+        elif char == ' ':
+            if previous_char == ' ':
+                return False
+            if not has_alpha:
+                return False
+            previous_char = char
+        elif char == "'":
+            if previous_char == ' ':
+                return False
+            previous_char = char
+        else:
+            return False
+    return has_alpha
+
+
 def collect_player_info():
     """
     Collect player's name and location, and save it to Google Sheets.
@@ -233,42 +267,31 @@ def collect_player_info():
         name (str): The player's name.
         location (str): The player's location.
     """
-
-    def is_valid_input(input_string):
-        """
-        Function to check if input contains only letters,
-        spaces, and apostrophes.
-        """
-        return all(char.isalpha() or char.isspace() or char == "'"
-                   for char in input_string)
-
     name = None
     location = None
 
     while not name or not location:
         if not name:
             print_input_instructions("Enter your name please", Fore.WHITE)
-            try:
-                name = input_for_saving_info("Enter your name: ")
+            name = input_for_saving_info("Enter your name: ")
 
-                if not is_valid_input(name):
-                    raise ValueError(
-                        "Invalid input. Please enter only letters and spaces.")
-            except ValueError as ve:
-                print_validation_error(str(ve))
-                continue
+            if not is_valid_input(name):
+                print_validation_error(
+                    "Invalid input. Please enter only letters and apostrophes."
+                    )
+                name = None
+            continue
 
         if not location:
             print_input_instructions("Enter your location please", Fore.WHITE)
-            try:
-                location = input_for_saving_info("Enter your location: ")
+            location = input_for_saving_info("Enter your location: ")
 
-                if not is_valid_input(location):
-                    raise ValueError(
-                        "Invalid input. Please enter only letters and spaces.")
-            except ValueError as ve:
-                print_validation_error(str(ve))
-                continue
+            if not is_valid_input(location):
+                print_validation_error(
+                    "Invalid input. Please enter only letters and spaces.")
+                location = None
+            continue
+
     worksheet_players.append_row([name, location])
     print()
     print()
@@ -510,8 +533,8 @@ def play_password_level():
             print(Fore.GREEN +
                   "All numbers are revealed!"
                   " Please enter the complete password now: "
-                  + Fore.RESET + Fore.YELLOW + ''.join(map(str, password)
-                                                       + Fore.RESET))
+                  + Fore.RESET + Fore.YELLOW + ''.join(map(str, password))
+                  + Fore.RESET)
             continue
 
         revealed_password = reveal_password(
@@ -940,32 +963,12 @@ def play_game():
         print_separation_lines(Fore.RED)
         print()
         return
-    end_time = time.time()  # Record the end time
-    time_taken = end_time - start_time  # Calculate the elapsed time
-    record_score(name, location, time_taken)  # Record the player's score
+    end_time = time.time()
+    time_taken = end_time - start_time
+    record_score(name, location, time_taken)
     clear_screen()
     print_congratulations_message("Congratulations, brave adventurer! "
                                   "You've freed Waldo from his dungeon!")
-    print_instruction_message("VICTORY!")
-    print_instruction_message(
-        "With your keen eye and determination,"
-        " you've freed Waldo from his elusive captivity.")
-    print_instruction_message(
-        "Now, he wanders the world at his leisure,"
-        " appearing and disappearing as he pleases.")
-    print_instruction_message(
-        "But fear not, for the spirit of adventure lives on.")
-    print_instruction_message(
-        "For all those who yearn to seek, who long to wonder,"
-        " who marvel at the mysteries of the world,")
-    print_instruction_message(
-        "Waldo may yet reveal himself again,"
-        " in unexpected places and at unexpected times.")
-    print_instruction_message(
-        "So keep your eyes sharp and your heart open,")
-    print_instruction_message(
-        "For where there is wonder, there is Waldo.")
-    print_congratulations_message("GAME OVER")
 
 
 # MAIN FUNCTION
@@ -975,6 +978,26 @@ def main():
     """
     while True:
         play_game()
+        print_instruction_message("VICTORY!")
+        print_instruction_message(
+            "With your keen eye and determination,"
+            " you've freed Waldo from his elusive captivity.")
+        print_instruction_message(
+            "Now, he wanders the world at his leisure,"
+            " appearing and disappearing as he pleases.")
+        print_instruction_message(
+            "But fear not, for the spirit of adventure lives on.")
+        print_instruction_message(
+            "For all those who yearn to seek, who long to wonder,"
+            " who marvel at the mysteries of the world,")
+        print_instruction_message(
+            "Waldo may yet reveal himself again,"
+            " in unexpected places and at unexpected times.")
+        print_instruction_message(
+            "So keep your eyes sharp and your heart open,")
+        print_instruction_message(
+            "For where there is wonder, there is Waldo.")
+        print_congratulations_message("GAME OVER")
         while True:
             print()
             print_leaderboard(worksheet_scores)
