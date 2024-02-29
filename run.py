@@ -42,6 +42,10 @@ worksheet_riddles = SHEET.worksheet(RIDDLES_WORKSHEET)
 WORDS_WORKSHEET = 'words'
 worksheet_words = SHEET.worksheet(WORDS_WORKSHEET)
 
+# scores sheet
+SCORES_WORKSHEET = 'scores'
+worksheet_scores = SHEET.worksheet(SCORES_WORKSHEET)
+
 
 # Inputs related function
 def input_for_saving_info(prompt):
@@ -257,6 +261,10 @@ def greet_player_and_explain_game():
 def collect_player_info():
     """
     Collect player's name and location, and save it to Google Sheets.
+    
+    Returns:
+        name (str): The player's name.
+        location (str): The player's location.
     """
 
     def is_valid_input(input_string):
@@ -265,33 +273,33 @@ def collect_player_info():
         """
         return input_string.replace(" ", "").isalpha()
 
-    while True:
-        print_input_instructions("Enter your name please", Fore.WHITE)
-        try:
-            name = input_for_saving_info("Enter your name: ")
+    name = None
+    location = None
 
-            if not is_valid_input(name):
-                raise ValueError(
-                    "Invalid input. Please enter only letters and spaces.")
-        except ValueError as ve:
-            print_validation_error(str(ve))
-            continue
-        else:
-            break
+    while not name or not location:
+        if not name:
+            print_input_instructions("Enter your name please", Fore.WHITE)
+            try:
+                name = input_for_saving_info("Enter your name: ")
 
-    while True:
-        print_input_instructions("Enter your location please", Fore.WHITE)
-        try:
-            location = input_for_saving_info("Enter your location: ")
+                if not is_valid_input(name):
+                    raise ValueError(
+                        "Invalid input. Please enter only letters and spaces.")
+            except ValueError as ve:
+                print_validation_error(str(ve))
+                continue
 
-            if not is_valid_input(location):
-                raise ValueError(
-                    "Invalid input. Please enter only letters and spaces.")
-        except ValueError as ve:
-            print_validation_error(str(ve))
-            continue
-        else:
-            break
+        if not location:
+            print_input_instructions("Enter your location please", Fore.WHITE)
+            try:
+                location = input_for_saving_info("Enter your location: ")
+
+                if not is_valid_input(location):
+                    raise ValueError(
+                        "Invalid input. Please enter only letters and spaces.")
+            except ValueError as ve:
+                print_validation_error(str(ve))
+                continue
 
     # Append player information to the worksheet
     worksheet_players.append_row([name, location])
@@ -305,6 +313,8 @@ def collect_player_info():
     print_empty_line_with_color()
     print()
     print()
+    time.sleep(4)
+    return name, location
 
 
 def print_password_challenge_instructions():
@@ -337,6 +347,106 @@ def print_password_challenge_instructions():
         print(f"{color}{Style.BRIGHT}{centered_rule}{Style.RESET_ALL}")
         print()
         time.sleep(0.5)
+
+
+def record_score(name, location, time_taken):
+    """
+    Record the player's score (name, location, time taken)
+    in the scores worksheet.
+    """
+    # Round time_taken to seconds
+    time_taken_rounded = round(time_taken)
+
+    # Append the player's score to the scores worksheet with column names
+   
+    worksheet_scores.append_row([name, location, time_taken_rounded])
+
+
+def print_leaderboard(worksheet):
+    """
+    Print the leaderboard based on the best times of players.
+
+    Args:
+        worksheet (gspread.Worksheet):
+        The worksheet containing the leaderboard data.
+
+    Returns:
+        None
+    """
+    print_colored_text("Leaderboard (Sorted by Best Time):")
+    print()
+    words = ["Name      ", "Country      ", "Time   "]
+    colors = [Back.RED, Back.GREEN, Back.MAGENTA]
+    print_board_categories(words, colors)
+    print(Style.RESET_ALL)
+    leaderboard_data = worksheet.get_all_values()[1:]
+    leaderboard_data.sort(
+        key=lambda x: float(x[-1]) if x[-1] else float('inf')
+        )
+
+    for i, row in enumerate(leaderboard_data[:10]):
+        if i == 0:
+            medal_color = Fore.YELLOW
+        elif i == 1:
+            medal_color = Fore.CYAN
+        elif i == 2:
+            medal_color = Fore.RED
+        else:
+            medal_color = Fore.RESET
+
+        print(
+            f"{medal_color}{row[0]:<10} {row[1]:<14} {row[2]}"
+        )
+
+
+def print_colored_text(text, background_color=None):
+    """
+    Print the text "Congratulations!" with each letter in a different color.
+
+    Args:
+        text (str): The text to print.
+
+    Returns:
+        None
+    """
+    colored_letters = [
+        Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN]
+    centered_text = text.center(TERMINAL_WIDTH)
+    colored_text = ""
+    for insx, char in enumerate(centered_text):
+        colored_text += (
+                         f"{colored_letters[insx % len(colored_letters)]}"
+                         f"{Style.BRIGHT}{char}"
+                        )
+    # Apply background color if provided
+    if background_color:
+        print(f"{background_color}{colored_text}{Style.RESET_ALL}")
+    else:
+        print(colored_text)
+
+
+def print_board_categories(words_text, words_colors):
+    """
+    Print each word in a different color.
+
+    Args:
+        words (list): List of words to print.
+        colors (list): List of colorama color codes corresponding to each word.
+
+    Raises:
+        ValueError: If the length of the words and colors lists don't match.
+    """
+    if len(words_text) != len(words_colors):
+        raise ValueError("The lengths of words and colors lists must match.")
+
+    # Construct the text with specified colors for each word
+    colored_text = ""
+    for word, color in zip(words_text, words_colors):
+        colored_text += f"{color}{word} "
+
+    # Print the colored text
+    print(colored_text.strip() + Style.RESET_ALL)
+
 
 # PASSWORD LEVEL FUNCTIONS
 
@@ -838,12 +948,15 @@ def play_game():
     Returns:
         None
     """
+    start_time = time.time()  # Record the start time
     print()
     clear_screen()
     print_congratulations_message("WELCOME, ADVENTURER!")
     greet_player_and_explain_game()
-    collect_player_info()
+
     time.sleep(0.5)
+
+    name, location = collect_player_info()
 
     if not play_password_level():
         print()
@@ -898,6 +1011,10 @@ def play_game():
         print_separation_lines(Fore.RED)
         print()
         return
+
+    end_time = time.time()  # Record the end time
+    time_taken = end_time - start_time  # Calculate the elapsed time
+    record_score(name, location, time_taken)  # Record the player's score
     clear_screen()
     print_congratulations_message("Congratulations, brave adventurer! "
                                   "You've freed Waldo from his dungeon!")
@@ -931,6 +1048,8 @@ def main():
     while True:
         play_game()
         while True:
+            print()
+            print_leaderboard(worksheet_scores)
             print_input_instructions("Do you want to play again? (yes/no)")
             restart = input_for_saving_info("Y or N: ").lower()
             if restart == "y":
