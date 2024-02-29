@@ -269,9 +269,11 @@ def collect_player_info():
 
     def is_valid_input(input_string):
         """
-        Function to check if input contains only letters and spaces.
+        Function to check if input contains only letters,
+        spaces, and apostrophes.
         """
-        return input_string.replace(" ", "").isalpha()
+        return all(char.isalpha() or char.isspace() or char == "'"
+                   for char in input_string)
 
     name = None
     location = None
