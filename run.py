@@ -321,7 +321,7 @@ def print_password_challenge_instructions():
         "Buddy Waldo, your dear friend, is imprisoned"
         " within these walls, alone and scared.",
         "You are his only hope for freedom and salvation.",
-        "To rescue him, you must crack the lock to enter the Castle,"
+        "To rescue him,first you must crack the lock to enter the Castle,"
         " a formidable 4-digit password lock.",
         "The password consists of numbers ranging from 0 to 5,"
         " each digit adding to the challenge.",
@@ -338,15 +338,6 @@ def print_password_challenge_instructions():
         print(f"{color}{Style.BRIGHT}{centered_rule}{Style.RESET_ALL}")
         print()
         time.sleep(0.5)
-
-# PLAY GAME CALLS
-
-
-print()
-print_congratulations_message("WELCOME, ADVENTURER!")
-greet_player_and_explain_game()
-collect_player_info()
-time.sleep(0.5)
 
 # PASSWORD LEVEL FUNCTIONS
 
@@ -412,7 +403,7 @@ def play_password_level():
         guess = input_for_password_level("Enter 4-digits without spaces: "
                                          + Fore.RESET)
         print(f"{Fore.BLUE}Attempts left:{Fore.RESET}{Fore.YELLOW}"
-              f"{attempts}\n", Fore.RESET + Back.RESET)
+              f" {attempts}\n", Fore.RESET + Back.RESET)
 
         # Check if the guess is correct
         if len(guess) != 4 or not guess.isdigit():
@@ -458,11 +449,11 @@ def play_password_level():
 
 # RIDDLE FUNCTIONS
 
-def print_instruction_message(message, color=Fore.GREEN, background=Back.WHITE
+def print_instruction_message(message, color=Fore.GREEN
                               ):
     """Prints a message with specified color and background."""
     print(Fore.RESET)
-    print(background + color + message + Style.RESET_ALL)
+    print(color + message + Style.RESET_ALL)
     time.sleep(0.5)
 
 
@@ -517,15 +508,17 @@ def play_riddle(riddle, answer, hints):
                 + Fore.RESET)
             if hint_index < len(hints):
                 print_hint(f"{Fore.BLUE}Hint{Fore.RESET} "
-                           f"{hint_index + 1}:{Fore.YELLOW} {hints[hint_index]}"
+                           f"{hint_index + 1}:{Fore.YELLOW}"
+                           f" {hints[hint_index]}"
                            + Style.RESET_ALL)
                 hint_index += 1
         else:
             print_instruction_message(
                 "Incorrect answer. You have run out of attempts."
                 " The ghost of Enigma has defeated you.", Fore.RED)
-            print_instruction_message(
-                "RIDDLE WAS: " + answer, Fore.YELLOW, Back.WHITE)
+            print(
+                Fore.BLUE + "RIDDLE WAS: " + Fore.RESET + Fore.YELLOW
+                + answer + Fore.RESET)
             print()
             print()
             return False
@@ -577,7 +570,7 @@ def play_rock_paper_scissors_level():
     print_centered_text("Welcome to Challenge Three:"
                         " ROCK,PAPER or SISSORS DUEL!!", Fore.RED)
     print_separation_lines(Fore.RED)
-    print_instruction_message("You are one step away from"
+    print_instruction_message("You are three step away from"
                               " entering the dark chamber"
                               " where our friend Waldo is imprisoned.")
     print_instruction_message("In front of the doors stands"
@@ -682,16 +675,30 @@ def play_word_maze_level():
     wrong_attempts = 0
     print(maze_sequence)
 
-    print(
-        Back.RED + Fore.WHITE +
-        "\nWelcome to the Word Maze Game!"
-        + Style.RESET_ALL)
-    print_instruction_message("Waldo's cage is at the end of the maze.")
-    print_instruction_message("The maze is collapsing, and you need to guess"
-                              " the correct sequence"
-                              " of left (L) and right (R) turns.")
-    print_instruction_message("Be careful! Making too many wrong guesses"
-                              " might lead to unexpected dangers!")
+    # Text 1
+    print_instruction_message(
+        "Before you, our valiant adventurer, passed O'clipper,")
+    print_instruction_message(
+        "the knight, in an exhausting duel,"
+        " where the clash of words sang the ballad of bravery and resilience.")
+    print_instruction_message(
+        "Behold, the new leg of your journey awaits - Waldo's"
+        " cage lies at the end of the labyrinth, hidden")
+    print_instruction_message(
+        "amidst the shadows and whispers of the ancient stones.")
+    print_instruction_message(
+        "The maze, now stirred by your presence,"
+        " begins to tremble and collapse,")
+    print_instruction_message(
+        "its winding paths shifting like the sands of time."
+        " Only by discerning the correct sequence of left (L) and right (R)"
+        "turns can you navigate its treacherous embrace.")
+    print_instruction_message(
+        "But heed this warning, noble soul: with each misstep,"
+        " the specter of unforeseen perils looms closer,")
+    print_instruction_message(
+        "waiting to ensnare the unwary wanderer. Tread carefully,"
+        " for the labyrinth guards its secrets jealously.")
 
     # Gameplay loop
     index = 0
@@ -775,9 +782,7 @@ def play_magic_word_level():
     
     print_instruction_message("To unlock the cage and free Waldo,")
     print_instruction_message("you must speak the magic word within 1 minute.")
-    print_instruction_message("Be warned, you have only")
-    print_instruction_message(" 1 minute to guess the word!")
-    print_instruction_message("Every guess, a warning will be issued.")
+    print()
     print_instruction_message(Fore.BLUE +
                               f"\nScrambled word:{Style.RESET_ALL}"
                               f"{Fore.YELLOW}{scrambled_word}"
@@ -833,6 +838,11 @@ def play_game():
     Returns:
         None
     """
+    print()
+    print_congratulations_message("WELCOME, ADVENTURER!")
+    greet_player_and_explain_game()
+    collect_player_info()
+    time.sleep(0.5)
 
     if not play_password_level():
         print()
@@ -890,6 +900,26 @@ def play_game():
 
     print_congratulations_message("Congratulations, brave adventurer! "
                                   "You've freed Waldo from his dungeon!")
+    print_instruction_message("Congratulations!")
+    print_instruction_message(
+        "With your keen eye and determination,"
+        " you've freed Waldo from his elusive captivity.")
+    print_instruction_message(
+        "Now, he wanders the world at his leisure,"
+        " appearing and disappearing as he pleases.")
+    print_instruction_message(
+        "But fear not, for the spirit of adventure lives on.")
+    print_instruction_message(
+        "For all those who yearn to seek, who long to wonder,"
+        " who marvel at the mysteries of the world,")
+    print_instruction_message(
+        "Waldo may yet reveal himself again,"
+        " in unexpected places and at unexpected times.")
+    print_instruction_message(
+        "So keep your eyes sharp and your heart open,")
+    print_instruction_message(
+        "For where there is wonder, there is Waldo.")
+    print_congratulations_message("GAME OVER")
 
 
 # MAIN FUNCTION
