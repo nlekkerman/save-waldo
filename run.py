@@ -779,7 +779,7 @@ def play_magic_word_level():
     print()
     print_instruction_message("Congratulations, adventurer!")
     print_instruction_message(" You stand before Waldo's cage.")
-    
+
     print_instruction_message("To unlock the cage and free Waldo,")
     print_instruction_message("you must speak the magic word within 1 minute.")
     print()
@@ -796,7 +796,7 @@ def play_magic_word_level():
         remaining_time = end_time - current_time
 
         if remaining_time >= 0:
-            print(Fore.BLUE + 
+            print(Fore.BLUE +
                   f"\nRemaining time: {Fore.RESET}{Fore.YELLOW} "
                   f"{int(remaining_time)} {Fore.RESET}{Fore.BLUE}seconds."
                   + Fore.RESET)
