@@ -495,7 +495,7 @@ def play_password_level():
     while attempts > 0:
         # Ask the player to guess the password
         print_input_instructions(
-            "Enter your guess (4-digit number without spaces). ")
+            "Enter your guess (4-digit number without spaces) from 0 to 5. ")
         guess = input_for_password_level("Enter 4-digits without spaces: "
                                          + Fore.RESET)
         print(f"{Fore.BLUE}Attempts left:{Fore.RESET}{Fore.YELLOW}"
