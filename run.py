@@ -1,8 +1,8 @@
 """
-Module: lock_cracker_game
+Module: save-waldo
 
 This module contains functions
-related to the Lock Cracker game.
+related to the save Waldo game.
 """
 import shutil
 import os
@@ -1007,13 +1007,14 @@ def main():
                 break
             if restart == "n":
                 clear_screen()
-                print("\n"*7)
+                print()
                 print_empty_line_with_color()
                 print_centered_text("Thank you for saving Waldo and good"
                                     " luck in new adventures!", Fore.GREEN)
                 print_empty_line_with_color()
                 return
-            print("Invalid input. Please enter 'y' or 'n'.")
+            print(Fore.RED +
+                  "Invalid input. Please enter 'y' or 'n'." + Fore.RESET)
 
 
 if __name__ == "__main__":
