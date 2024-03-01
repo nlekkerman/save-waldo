@@ -894,6 +894,26 @@ def play_magic_word_level():
                 "Good Job! You've spoken the magic word!", Fore.GREEN)
             print_empty_line_with_color()
             print()
+            print_instruction_message("VICTORY!")
+            print_instruction_message(
+                "With your keen eye and determination,"
+                " you've freed Waldo from his elusive captivity.")
+            print_instruction_message(
+                "Now, he wanders the world at his leisure,"
+                " appearing and disappearing as he pleases.")
+            print_instruction_message(
+                "But fear not, for the spirit of adventure lives on.")
+            print_instruction_message(
+                "For all those who yearn to seek, who long to wonder,"
+                " who marvel at the mysteries of the world,")
+            print_instruction_message(
+                "Waldo may yet reveal himself again,"
+                " in unexpected places and at unexpected times.")
+            print_instruction_message(
+                "So keep your eyes sharp and your heart open,")
+            print_instruction_message(
+                "For where there is wonder, there is Waldo.")
+            print_congratulations_message("GAME OVER")
             time.sleep(4)
             return True
         print_validation_error("\nIncorrect guess. Try again.")
@@ -966,7 +986,6 @@ def play_game():
     end_time = time.time()
     time_taken = end_time - start_time
     record_score(name, location, time_taken)
-    clear_screen()
     print_congratulations_message("Congratulations, brave adventurer! "
                                   "You've freed Waldo from his dungeon!")
 
@@ -978,29 +997,9 @@ def main():
     """
     while True:
         play_game()
-        print_instruction_message("VICTORY!")
-        print_instruction_message(
-            "With your keen eye and determination,"
-            " you've freed Waldo from his elusive captivity.")
-        print_instruction_message(
-            "Now, he wanders the world at his leisure,"
-            " appearing and disappearing as he pleases.")
-        print_instruction_message(
-            "But fear not, for the spirit of adventure lives on.")
-        print_instruction_message(
-            "For all those who yearn to seek, who long to wonder,"
-            " who marvel at the mysteries of the world,")
-        print_instruction_message(
-            "Waldo may yet reveal himself again,"
-            " in unexpected places and at unexpected times.")
-        print_instruction_message(
-            "So keep your eyes sharp and your heart open,")
-        print_instruction_message(
-            "For where there is wonder, there is Waldo.")
-        print_congratulations_message("GAME OVER")
+        print_leaderboard(worksheet_scores)
         while True:
             print()
-            print_leaderboard(worksheet_scores)
             print_input_instructions("Do you want to play again? (yes/no)")
             restart = input_for_saving_info("Y or N: ").lower()
             if restart == "y":

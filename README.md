@@ -9,3 +9,67 @@ Welcome to Save Waldo, an interactive text-based adventure game where your missi
 
 For an accessible version of the game, please visit [here](https://save-waldo-d25a8b526b3c.herokuapp.com/).
 
+## User Experience (UX)
+
+### Targeted Audience
+Save Waldo is designed for players who enjoy challenging their logic, perception, and intelligence. It appeals to:
+
+- **Puzzle Enthusiasts**: Engage in thought-provoking challenges designed to test your problem-solving skills.
+
+- **Adventure Seekers**: Immerse yourself in an interactive text-based adventure that promises excitement at every turn.
+
+- **Story Lovers**: Experience captivating storytelling intertwined with immersive gameplay, creating a truly unique narrative experience.
+
+- **Mystery Solvers**: Uncover the secrets behind Waldo's captivity through clever problem-solving and keen observation.
+
+- **Strategic Thinkers**: Strategize your moves to overcome obstacles and progress through challenging levels.
+
+- **Curiosity Seekers**: Explore hidden clues and mysterious locations as you embark on a quest to free Waldo from captivity.
+
+- **Riddle Enthusiasts**: Put your wit to the test with a variety of cryptic riddles waiting to be solved in Save Waldo.
+
+## GOALS
+
+### User Goals:
+
+- **Logic Training**: Enhance logical thinking skills through puzzle-solving challenges.
+  
+- **Problem-Solving Practice**: Sharpen problem-solving abilities by tackling various obstacles.
+  
+- **Perception Improvement**: Improve perceptual skills by deciphering clues and patterns.
+  
+- **Critical Thinking Development**: Develop critical thinking skills through interactive storytelling.
+  
+- **Cognitive Engagement**: Engage in a mentally stimulating activity that exercises cognitive functions.
+  
+- **Entertainment and Enjoyment**: Experience fun and enjoyment while engaging in an immersive adventure.
+  
+- **Skill Progression**: Track and observe progression in logical, problem-solving, and perceptual abilities.
+  
+- **Interactive Learning**: Learn through interactive gameplay and narrative-driven challenges.
+  
+- **Sense of Achievement**: Feel a sense of accomplishment and fulfillment from overcoming challenges.
+  
+- **Relaxation and Stress Relief**: Enjoy a relaxing and stress-relieving gaming experience.
+
+### Owner's Goals:
+
+- **Provide Engaging Gameplay**: Offer players a captivating and immersive gaming experience.
+  
+- **Promote Critical Thinking**: Encourage players to develop and apply critical thinking skills.
+  
+- **Foster Problem-Solving Skills**: Create challenges that promote problem-solving and logical reasoning.
+  
+- **Ensure User Satisfaction**: Prioritize user satisfaction by delivering enjoyable and rewarding gameplay.
+  
+- **Build a Community**: Foster a community of players who share a passion for puzzle-solving and adventure.
+  
+- **Drive Engagement and Retention**: Keep players engaged and invested in the game through compelling content.
+  
+- **Encourage Continued Play**: Provide incentives and rewards to encourage players to continue playing and exploring.
+  
+- **Monetization Opportunities**: Explore monetization options such as in-game purchases or ad revenue while maintaining player satisfaction.
+
+
+
+
