@@ -48,7 +48,7 @@ Here are the flowchart images for the Save Waldo game:
 
 ![Word Maze Level Flowchart](features/flowchart_part_four.jpg)
 
-5. **Magic Word Level Flowchart:**
+5. **Magic Word Level And End Game Flowchart:**
 
 ![Magic Word Level And End Game Flowchart](features/flowchart_part_five.jpg)
 
