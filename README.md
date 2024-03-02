@@ -50,7 +50,7 @@ Here are the flowchart images for the Save Waldo game:
 
 5. **Magic Word Level Flowchart:**
 
-![Magic Word Level Flowchart](features/flowchart_part_five.jpg)
+![Magic Word Level And End Game Flowchart](features/flowchart_part_five.jpg)
 
 These flowcharts visualize the gameplay and decision-making process for each level in the game.
 
@@ -102,7 +102,7 @@ These flowcharts visualize the gameplay and decision-making process for each lev
 ## Introduction
 The `save-waldo` module contains functions related to the Save Waldo game, an interactive text-based adventure where players embark on a journey to rescue Waldo from his mysterious captivity. This README provides an overview of the module's functionalities, game mechanics, and design aspects.
 
-![Colors](features/flowchart_part_five.jpg)
+![Colors](features/colors.jpg)
 
 ### Design Goals
 - Create an immersive and engaging text-based gaming experience.
