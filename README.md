@@ -52,8 +52,6 @@ Here are the flowchart images for the Save Waldo game:
 
 ![Magic Word Level And End Game Flowchart](features/flowchart_part_five.jpg)
 
-These flowcharts visualize the gameplay and decision-making process for each level in the game.
-
 
 ## GOALS
 
