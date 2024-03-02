@@ -872,8 +872,7 @@ def play_magic_word_level():
         "Quickly! The time is ticking. The secret phrase is a scrambled word."
         " Unscramble it before it's too late!")
 
-    print()
-    print(Fore.WHITE + Back.YELLOW + " SCRAMLED WORD:  " + Style.RESET_ALL)
+    print(Fore.WHITE + Back.YELLOW + " SCRAMBLED WORD:  " + Style.RESET_ALL)
     print_instruction_message(Fore.BLUE +
                               f"\nScrambled word:{Style.RESET_ALL}"
                               f"{Fore.YELLOW}{scrambled_word}"

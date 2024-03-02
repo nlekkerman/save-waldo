@@ -375,3 +375,22 @@ As a newcomer to Python development, I encountered several bugs during the devel
   - Error Thrown:
     ![Error Thrown](features/bug_image.jpg)
 
+
+## Credits
+
+The visual appeal of this application was enhanced by incorporating a captivating background image, adding depth and vibrancy to the overall presentation.
+
+- **Background Image:** [Image by brgfx on Freepik](https://www.freepik.com/free-vector/castle-tower-fairytale-land-cartoon-scene_11691173.htm#fromView=search&page=1&position=45&uuid=0c8c9421-807d-470b-83f2-8a1904bc4995)
+
+## Code
+
+- **ChatGPT:** For providing assistance and support. Their technology reduces development time and speeds up the creation process by minimizing time spent on research and typing tasks. 
+
+## Special Thanks
+
+We would like to express our gratitude to the following individuals and resources for their support:
+
+- **Mr. Brian O'Hare:** Mentor
+
+
+
