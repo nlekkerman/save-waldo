@@ -830,15 +830,10 @@ def get_random_word():
     """
     Function to retrieve a random word from the Google Sheet.
     """
-    # Get all words from the sheet
     words_data = worksheet_words.get_all_values()[1:]
-    # Shuffle the words
     shuffle(words_data)
-    # Select a random word
     random_word = sample(words_data, 1)[0]
-    # Extract the unscrambled word
     unscrambled_word = random_word[0]
-    # Extract the scrambled word
     scrambled_word = random_word[1]
     print(scrambled_word + "  " + unscrambled_word)
     return unscrambled_word, scrambled_word
@@ -857,14 +852,28 @@ def play_magic_word_level():
     unscrambled_word, scrambled_word = get_random_word()
     print()
     print_instruction_message("Congratulations, brave adventurer!")
-    print_instruction_message("You have journeyed through treacherous lands and overcome formidable challenges.")
-    print_instruction_message("Now, standing before you is Waldo's cage, guarded by an ancient and mischievous entity known as the Ghost Stapler Shredder.")
-    print_instruction_message("To unlock the cage and free Waldo, you must outwit this spectral office apparition.")
-    print_instruction_message("But beware, for the Ghost Stapler Shredder demands the utterance of a secret phrase within the next 60 seconds,")
-    print_instruction_message("lest it engulfs you in a whirlwind of shredded documents and lost paperclips.")
-    print_instruction_message("Quickly! The time is ticking. The secret phrase is a scrambled word. Unscramble it before it's too late!")
+    print_instruction_message(
+        "You have journeyed through treacherous castle"
+        " and overcome formidable challenges.")
+    print_instruction_message(
+        "Now, standing before you is Waldo's cage,"
+        " guarded by an ancient and mischievous entity"
+        " known as the Ghost Stapler Shredder.")
+    print_instruction_message("To unlock the cage and free Waldo you must"
+                              " outwit this spectral office apparition.")
+    print_instruction_message(
+        "But beware, for the Ghost Stapler Shredder"
+        " demands the utterance of a secret phrase within the next 60 seconds,"
+        )
+    print_instruction_message(
+        "lest it engulfs you in a whirlwind of shredded"
+        " documents and lost paperclips.")
+    print_instruction_message(
+        "Quickly! The time is ticking. The secret phrase is a scrambled word."
+        " Unscramble it before it's too late!")
 
     print()
+    print(Fore.WHITE + Back.YELLOW + " SCRAMLED WORD:  " + Style.RESET_ALL)
     print_instruction_message(Fore.BLUE +
                               f"\nScrambled word:{Style.RESET_ALL}"
                               f"{Fore.YELLOW}{scrambled_word}"

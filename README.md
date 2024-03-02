@@ -28,6 +28,33 @@ Save Waldo is designed for players who enjoy challenging their logic, perception
 
 - **Riddle Enthusiasts**: Put your wit to the test with a variety of cryptic riddles waiting to be solved in Save Waldo.
 
+# Flowchart Images
+
+Here are the flowchart images for the Save Waldo game:
+
+1. **Password and Start the Game Flowchart:**
+
+![Password and Start the Game Flowchart](features/flowchart_part_one.jpg)
+
+2. **Riddle Level Flowchart:**
+
+![Riddle Level Flowchart](features/flowchart_part_two.jpg)
+
+3. **Rock-Paper-Scissors Level Flowchart:**
+
+![Rock-Paper-Scissors Level Flowchart](features/flowchart_part_three.jpg)
+
+4. **Word Maze Level Flowchart:**
+
+![Word Maze Level Flowchart](features/flowchart_part_four.jpg)
+
+5. **Magic Word Level Flowchart:**
+
+![Magic Word Level Flowchart](features/flowchart_part_five.jpg)
+
+These flowcharts visualize the gameplay and decision-making process for each level in the game.
+
+
 ## GOALS
 
 ### User Goals:
