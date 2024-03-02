@@ -340,4 +340,38 @@ As a result, the Python code in this project aligns with PEP 8 standards, promot
 - If the player enters characters other than letters from A to Z, they are prompted to try again.
 
 
+## Bugs
+
+As a newcomer to Python development, I encountered several bugs during the development process. However, I diligently worked through them and resolved most of them in the code. Below is documentation for one of the bugs I encountered:
+
+### Bug 1: Print Validation Error in `play_password_level()`
+
+- **Description**:
+  - As a newcomer to Python development, I encountered issues with proper syntax enclosure in a print statement in the `play_password_level()` function.
+  - The error occurred in the following code snippet:
+    ```python
+    print(Fore.GREEN +
+          "All numbers are revealed!"
+          " Please enter the complete password now: "
+          + Fore.RESET + Fore.YELLOW + ''.join(map(str, password)
+          + Fore.RESET))
+    ```
+  - The issue was that `Fore.RESET` was placed outside of the print statement's parenthesis, causing a syntax error.
+
+- **Bug Fix**:
+  - To resolve the issue, I enclosed the entire print statement properly within the parenthesis.
+  - Here's the corrected code:
+    ```python
+    print(Fore.GREEN +
+          "All numbers are revealed!"
+          " Please enter the complete password now: "
+          + Fore.RESET + Fore.YELLOW + ''.join(map(str, password))
+          + Fore.RESET)
+    ```
+  - Before Fix:
+    ![Print Validation Error Before](features/before_fixing_bug.jpg)
+  - After Fix:
+    ![Print Validation Error After Fix](features/after_fixing_bug.jpg)
+  - Error Thrown:
+    ![Error Thrown](features/bug_image.jpg)
 
