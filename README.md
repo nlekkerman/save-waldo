@@ -116,19 +116,6 @@ The `save-waldo` module contains functions related to the Save Waldo game, an in
 - **Clearing Screen:** Functionality to clear the terminal screen for better readability and user experience.
 - **Leaderboard Display:** Presentation of the leaderboard with player names, locations, and best times.
 
-### Game Flow
-- **Introduction:** Welcome message and storyline introduction to immerse players into the game world.
-- **Player Info Collection:** Prompting players to enter their name and location for personalized gameplay.
-- **Level Challenges:** Presenting players with various challenges, such as password cracking and riddle-solving.
-- **Score Recording:** Recording players' scores and updating the leaderboard with their best times.
-- **Leaderboard Display:** Displaying the leaderboard with top players' information for competitive engagement.
-
-### Future Enhancements
-- Integration of additional game levels and challenges to provide ongoing entertainment.
-- Implementation of multiplayer functionality for cooperative or competitive gameplay.
-- Incorporation of graphics or ASCII art to enrich the visual experience.
-- Localization support for multilingual player interactions.
-- Enhancement of accessibility features for players with disabilities.
 
 ### Conclusion
 The `save-waldo` module aims to deliver an immersive and challenging text-based adventure gaming experience. By combining interactive storytelling, puzzle-solving mechanics, and dynamic visual effects, the game seeks to captivate players and provide hours of entertainment.
@@ -154,7 +141,7 @@ The `save-waldo` module aims to deliver an immersive and challenging text-based 
 
 ### Levels
 
-## Password Level
+#### Password Level
 - **Objective:** Crack the lock to enter the castle and advance in your quest to save Waldo.
 - **Challenge:** Guess the correct 4-digit password by using hints provided along the way.
 
@@ -205,30 +192,28 @@ To deploy my application on Heroku, I followed these steps:
 
 1. **Create a Heroku Account:** I signed up for a Heroku account on [Heroku's website](https://www.heroku.com/).
 
-2. **Install Heroku CLI:** I downloaded and installed the Heroku Command Line Interface (CLI) from the [official documentation](https://devcenter.heroku.com/articles/heroku-cli). The CLI allows me to manage Heroku applications directly from my terminal or command prompt.
-
-3. **Login to Heroku:** I
+2. **Login to Heroku:** I
 - logged in to my Heroku account.
 
-4. **Prepare Your Application:**
+3. **Prepared Application:**
 - I ensured that my project was set up properly and contained all necessary files.
 - I made sure that my project had a requirements.txt file containing all Python dependencies required for my application.
 
-5. **Connect Heroku with GitHub:** I connected Heroku with my GitHub repository and set it up to automatically build and deploy my application whenever I push changes to GitHub.
+4. **Connect Heroku with GitHub:** I connected Heroku with my GitHub repository and set it up to automatically build and deploy my application whenever I push changes to GitHub.
 
-6. **Set Up Config Vars:** I set up the necessary environment variables (Config Vars) for my application. I added these variables either through the Heroku dashboard or using the Heroku CLI:
+5. **Set Up Config Vars:** I set up the necessary environment variables (Config Vars) for my application. I added these variables either through the Heroku dashboard or using the Heroku CLI:
 - heroku config:set CREDS=<my-credentials>
 - heroku config:set PORT=8000
 
 
-7. **Add Buildpacks:** I specified the buildpacks required for my application. Since I'm using Python adn node.js, I needed to add the Python adn node.js buildpack. I did this through the Heroku dashboard:
+6. **Add Buildpacks:** I specified the buildpacks required for my application. Since I'm using Python adn node.js, I needed to add the Python adn node.js buildpack. I did this through the Heroku dashboard:
 - heroku/python
 - heroku/nodejs
 
 
-8. **Deploy Your Application:** With the automatic deployment set up, Heroku automatically built and deployed my application whenever I pushed changes to my GitHub repository.
+7. **Deployment Of Application:** With the automatic deployment set up, Heroku automatically built and deployed my application whenever I pushed changes to my GitHub repository.
 
-9. **Access Your Application:** After a successful deployment, I could access my application by opening the URL provided by Heroku:
+8. **Accessing Application:** After a successful deployment, I could access my application by opening the URL provided by Heroku:
 
 [Link To The Game](https://save-waldo-d25a8b526b3c.herokuapp.com/).
 
