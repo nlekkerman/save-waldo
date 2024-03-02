@@ -219,8 +219,11 @@ To deploy my application on Heroku, I followed these steps:
 
 ## Validation
 
+![CI Python Linter Validation](features/validation_image.jpg)
+
+
 To ensure adherence to Python's PEP 8 style guidelines, the Python code in this project was tested using the 
-[PEP 8 Online Checker](https://pep8ci.herokuapp.com/?fbclid=IwAR1EGqqRtrarAviKuJnTuie9TwmLN3VkarxztELQVbtEQ2sd1T2mikXOeZo). 
+[CI Python Linter](https://pep8ci.herokuapp.com/?fbclid=IwAR1EGqqRtrarAviKuJnTuie9TwmLN3VkarxztELQVbtEQ2sd1T2mikXOeZo). 
 The code was analyzed for compliance with PEP 8 standards, which cover aspects such as naming conventions, indentation, whitespace, and more.
 
 The PEP 8 Online Checker detected any violations of the PEP 8 style guidelines and provided feedback on areas where improvements could be made. After reviewing the feedback, necessary adjustments were made to the code to ensure consistency and readability.
