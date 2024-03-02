@@ -172,6 +172,9 @@ The `save-waldo` module aims to deliver an immersive and challenging text-based 
 
 - **Weekly Challenges:** Stay engaged and test your skills with weekly challenges that offer unique rewards and bonuses. Compete against other players on the leaderboard and earn special prizes for your achievements.
 
+- **More Riddles and Scrambled Words:** Get ready for even more brain-teasing challenges! We'll be adding a variety of new riddles and scrambled words to keep you entertained and engaged.
+
+
 - **Interactive Events:** Participate in special in-game events that offer limited-time challenges, rewards, and exclusive content. Keep an eye out for announcements and join the fun!
 
 
