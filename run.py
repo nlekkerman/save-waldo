@@ -856,10 +856,14 @@ def play_magic_word_level():
     print_separation_lines(Fore.RED)
     unscrambled_word, scrambled_word = get_random_word()
     print()
-    print_instruction_message("Congratulations, adventurer!")
-    print_instruction_message(" You stand before Waldo's cage.")
-    print_instruction_message("To unlock the cage and free Waldo,")
-    print_instruction_message("you must speak the magic word within 1 minute.")
+    print_instruction_message("Congratulations, brave adventurer!")
+    print_instruction_message("You have journeyed through treacherous lands and overcome formidable challenges.")
+    print_instruction_message("Now, standing before you is Waldo's cage, guarded by an ancient and mischievous entity known as the Ghost Stapler Shredder.")
+    print_instruction_message("To unlock the cage and free Waldo, you must outwit this spectral office apparition.")
+    print_instruction_message("But beware, for the Ghost Stapler Shredder demands the utterance of a secret phrase within the next 60 seconds,")
+    print_instruction_message("lest it engulfs you in a whirlwind of shredded documents and lost paperclips.")
+    print_instruction_message("Quickly! The time is ticking. The secret phrase is a scrambled word. Unscramble it before it's too late!")
+
     print()
     print_instruction_message(Fore.BLUE +
                               f"\nScrambled word:{Style.RESET_ALL}"
