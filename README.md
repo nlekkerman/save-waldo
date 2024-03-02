@@ -222,15 +222,122 @@ To deploy my application on Heroku, I followed these steps:
 ![CI Python Linter Validation](features/validation_image.jpg)
 
 
-To ensure adherence to Python's PEP 8 style guidelines, the Python code in this project was tested using the 
-[CI Python Linter](https://pep8ci.herokuapp.com/?fbclid=IwAR1EGqqRtrarAviKuJnTuie9TwmLN3VkarxztELQVbtEQ2sd1T2mikXOeZo). 
+To ensure adherence to Python's PEP 8 style guidelines, the Python code in this project was tested using the CI Python Linter.
+
 The code was analyzed for compliance with PEP 8 standards, which cover aspects such as naming conventions, indentation, whitespace, and more.
 
 The PEP 8 Online Checker detected any violations of the PEP 8 style guidelines and provided feedback on areas where improvements could be made. After reviewing the feedback, necessary adjustments were made to the code to ensure consistency and readability.
 
 As a result, the Python code in this project aligns with PEP 8 standards, promoting maintainability and readability for developers.
 
+[CI Python Linter Link](https://pep8ci.herokuapp.com/?fbclid=IwAR1EGqqRtrarAviKuJnTuie9TwmLN3VkarxztELQVbtEQ2sd1T2mikXOeZo). 
 
+
+## Testing
+
+## Validation
+
+### Collect Player Info
+
+#### Step 1: Collect Player's Name
+- Prompt: "Enter your name please"
+- Input: User's name
+- Validation:
+  - Check if the input contains only letters and apostrophes.
+  - If invalid:
+    - Error Message: "Invalid input. Please enter only letters and apostrophes."
+- Example:
+  ![Step 1 Example: Collect Player's Name](path_to_your_image_step_1.png)
+
+#### Step 2: Collect Player's Location
+- Prompt: "Enter your location please"
+- Input: User's location
+- Validation:
+  - Check if the input contains only letters and spaces.
+  - If invalid:
+    - Error Message: "Invalid input. Please enter only letters and spaces."
+- Example:
+  ![Step 2 Example: Collect Player's Location](path_to_your_image_step_2.png)
+
+#### Note:
+- The process repeats until both the name and location are valid inputs.
+- If an input is invalid, the user is prompted again for the same input.
+
+### Play Password Level
+
+#### Step 1: Guess Validation
+- Action: Validate the player's guess to ensure it's a 4-digit number without spaces.
+- Error Message: "Please enter a valid 4-digit number without spaces."
+- Example:
+  ![Step 1 Example: Guess Validation Error](path_to_your_image_guess_validation_error.png)
+
+#### Step 2: Incorrect Guess
+- Action: Notify the player that their guess is incorrect and display the revealed password.
+- Message: "Incorrect guess! The password: [Revealed Password]"
+- Example:
+  ![Step 2 Example: Incorrect Guess Message](path_to_your_image_incorrect_guess_message.png)
+
+#### Note:
+- If the guess is invalid, the player is prompted again to enter a valid guess.
+- The game continues until the player runs out of attempts.
+
+### Play Riddle
+
+#### Step 1: Answer Validation
+- Action: Validate the player's answer to the riddle.
+- Error Message: "Invalid input. Answer can only contain letters, spaces, and numbers."
+- Example:
+  ![Step 1 Example: Answer Validation Error](path_to_your_image_answer_validation_error.png)
+
+#### Step 2: Incorrect Answer
+- Action: Notify the player that their answer is incorrect and display the remaining attempts.
+- Message: "Incorrect! You have [remaining attempts] attempts remaining."
+- Example:
+  ![Step 2 Example: Incorrect Answer Message](path_to_your_image_incorrect_answer_message.png)
+
+#### Step 3: Out of Attempts
+- Action: Inform the player that they've run out of attempts and reveal the correct answer.
+- Message: "Incorrect answer. You have run out of attempts. The ghost of Enigma has defeated you."
+- Example:
+  ![Step 3 Example: Out of Attempts Message](path_to_your_image_out_of_attempts_message.png)
+
+#### Note:
+- If the answer is incorrect, the player is prompted to try again.
+- The player has 5 attempts to answer the riddle correctly.
+- If the player runs out of attempts, they will face the consequences of failing to solve the riddle.
+
+### Play Rock Paper Scissors Level
+
+#### Step 1: Choice Validation
+- Action: Validate the player's choice of rock, paper, or scissors.
+- Error Message: "Invalid input. Please enter 'r', 'p', or 's'."
+- Example:
+  ![Step 1 Example: Choice Validation Error](path_to_your_image_choice_validation_error.png)
+
+#### Note:
+- If the player enters an invalid choice, they are prompted to try again.
+
+### Play Word Maze Level
+
+#### Step 1: Direction Validation
+- Action: Validate the player's guess of left (L) or right (R) direction.
+- Error Message: "Invalid input. Please enter 'L' for left or 'R' for right."
+- Example:
+  ![Step 1 Example: Direction Validation Error](path_to_your_image_direction_validation_error.png)
+
+#### Note:
+- If the player enters an invalid direction, they are prompted to try again.
+
+### Play Magic Word Level
+
+#### Step 1: Magic Word Validation
+- Action: Validate the player's input for the unscrambled magic word.
+- Error Message: "Invalid characters entered. Please use only letters from A to Z."
+- Example:
+  ![Step 1 Example: Magic Word Validation Error](path_to_your_image_magic_word_validation_error.png)
+
+#### Note:
+- If the player enters characters other than letters from A to Z, they are prompted to try again.
 
 
 
