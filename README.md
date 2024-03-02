@@ -97,6 +97,45 @@ These flowcharts visualize the gameplay and decision-making process for each lev
   
 - **Monetization Opportunities**: Explore monetization options such as in-game purchases or ad revenue while maintaining player satisfaction.
 
+## Design
+
+## Introduction
+The `save-waldo` module contains functions related to the Save Waldo game, an interactive text-based adventure where players embark on a journey to rescue Waldo from his mysterious captivity. This README provides an overview of the module's functionalities, game mechanics, and design aspects.
+
+![Colors](features/flowchart_part_five.jpg)
+
+### Design Goals
+- Create an immersive and engaging text-based gaming experience.
+- Incorporate interactive storytelling elements to captivate players' attention.
+- Implement colorful and dynamic visualizations using the Colorama library to enhance the game's atmosphere.
+- Integrate Google Sheets API for player information storage and leaderboard management.
+- Utilize randomization and puzzle-solving mechanics to challenge players' logic and perception skills.
+- Colorful text output and dynamic screen clearing to create an immersive gaming environment.
+
+### User Interface
+- **Colorful Output:** Utilization of Colorama library for colorful text output, enhancing visual appeal.
+- **Interactive Prompts:** Informative prompts and instructions provided to guide players through the game.
+- **Clearing Screen:** Functionality to clear the terminal screen for better readability and user experience.
+- **Leaderboard Display:** Presentation of the leaderboard with player names, locations, and best times.
+
+### Game Flow
+- **Introduction:** Welcome message and storyline introduction to immerse players into the game world.
+- **Player Info Collection:** Prompting players to enter their name and location for personalized gameplay.
+- **Level Challenges:** Presenting players with various challenges, such as password cracking and riddle-solving.
+- **Score Recording:** Recording players' scores and updating the leaderboard with their best times.
+- **Leaderboard Display:** Displaying the leaderboard with top players' information for competitive engagement.
+
+### Future Enhancements
+- Integration of additional game levels and challenges to provide ongoing entertainment.
+- Implementation of multiplayer functionality for cooperative or competitive gameplay.
+- Incorporation of graphics or ASCII art to enrich the visual experience.
+- Localization support for multilingual player interactions.
+- Enhancement of accessibility features for players with disabilities.
+
+### Conclusion
+The `save-waldo` module aims to deliver an immersive and challenging text-based adventure gaming experience. By combining interactive storytelling, puzzle-solving mechanics, and dynamic visual effects, the game seeks to captivate players and provide hours of entertainment.
+
+
 
 
 
