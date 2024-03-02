@@ -133,7 +133,69 @@ The `save-waldo` module contains functions related to the Save Waldo game, an in
 ### Conclusion
 The `save-waldo` module aims to deliver an immersive and challenging text-based adventure gaming experience. By combining interactive storytelling, puzzle-solving mechanics, and dynamic visual effects, the game seeks to captivate players and provide hours of entertainment.
 
+## Game Features
+
+### Personalized Adventure
+- **Data Collection:** Before starting your adventure, provide your name and location for a personalized gaming experience.
+
+### Multi-Level Challenge
+- **Interactive Gameplay:** Engage in a multi-level game consisting of various challenges, each with its own unique objective.
+- **Narrative-Driven Experience:** Immerse yourself in a captivating narrative-driven storyline as you progress through the levels.
+
+### Diverse Challenges
+- **Logic and Perception:** Test your logic and perception with challenging puzzles and mind-bending riddles.
+- **Strategic Gameplay:** Employ strategic thinking and problem-solving skills to overcome obstacles and advance in the game.
+- **Intellectual Challenges:** Confront intellectual challenges and solve puzzles to unlock new levels and progress in the game.
+
+### Rewarding Progression
+- **Scoring System:** Compete with friends and track your progress with a built-in scoring system.
+- **Achievement Unlocks:** Unlock achievements and milestones as you progress through the game and complete challenges.
+- **Personalized Experience:** Personalize your gaming experience with your name and location, stored securely to enhance immersion and engagement.
+
+### Levels
+
+## Password Level
+- **Objective:** Crack the lock to enter the castle and advance in your quest to save Waldo.
+- **Challenge:** Guess the correct 4-digit password by using hints provided along the way.
+
+#### Riddle Level
+- **Objective:** Solve the mysterious riddle to uncover clues leading to Waldo's whereabouts.
+- **Challenge:** Use your wit and intellect to decipher the enigmatic riddle and progress in the game.
+
+#### Rock Paper Scissors Level
+- **Objective:** Defeat the enchanted knight, All Mighty Paper O'Clipper, to proceed on your journey.
+- **Challenge:** Engage in a battle of wits and strategy by playing rock, paper, scissors against the formidable knight.
+
+#### Word Maze Level
+- **Objective:** Navigate through the perplexing word maze to unveil the path to Waldo's captivity.
+- **Challenge:** Traverse through a labyrinth of words, avoiding dead-ends and traps, to reach your destination.
+
+#### Magic Word Level
+- **Objective:** Discover the magic word that will unlock the cage holding Waldo prisoner.
+- **Challenge:** Search for hidden clues and solve puzzles to uncover the elusive magic word and set Waldo free.
 
 
+## Future Features
 
+- **Expanded Gameplay:** Our team is dedicated to continuously improving the game experience. Expect updates and expansions that will introduce new levels, challenges, and features to keep the adventure fresh and exciting.
+
+- **Community Engagement:** We value your feedback and input! Join our vibrant community to share your ideas, suggestions, and feedback. Together, we can shape the future of the game and create an even more immersive and enjoyable experience for all players.
+
+- **Multiplayer Mode:** Challenge your friends or team up with other players in an exciting multiplayer mode. Compete against each other or collaborate to overcome obstacles and complete quests together.
+
+- **Weekly Challenges:** Stay engaged and test your skills with weekly challenges that offer unique rewards and bonuses. Compete against other players on the leaderboard and earn special prizes for your achievements.
+
+- **Interactive Events:** Participate in special in-game events that offer limited-time challenges, rewards, and exclusive content. Keep an eye out for announcements and join the fun!
+
+
+### Technologies Utilized:
+- **Paint (Windows):** Used the Paint application in Windows for basic image editing tasks, including creating and modifying images used in the game's user interface and graphics.
+- **SmartDraw:** Employed [SmartDraw](https://app.smartdraw.com/) for creating flowcharts and diagrams to visualize game logic, level designs, and decision trees, enhancing development planning and organization.
+- **ChatGPT:** Integrated ChatGPT for text generation and dialogue scripting, enabling dynamic and interactive storytelling elements within the game.
+- **Python Standard Libraries:**
+  - **shutil:** Utilized the shutil library for system-specific functions and terminal manipulation to enhance user experience and interface design.
+  - **os:** Leveraged the os module for interacting with the operating system, facilitating file management and system calls necessary for game execution.
+  - **random:** Used the random module to introduce randomness and variability into gameplay mechanics, such as generating random numbers and shuffling sequences.
+  - **re:** Incorporated the re module for pattern matching and text processing tasks, enabling robust string manipulation capabilities within the game's logic.
+  - **time:** Utilized the time module for time-related functionalities, including tracking gameplay events, implementing delays, and measuring performance metrics.
 
