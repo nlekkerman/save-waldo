@@ -199,3 +199,42 @@ The `save-waldo` module aims to deliver an immersive and challenging text-based 
   - **re:** Incorporated the re module for pattern matching and text processing tasks, enabling robust string manipulation capabilities within the game's logic.
   - **time:** Utilized the time module for time-related functionalities, including tracking gameplay events, implementing delays, and measuring performance metrics.
 
+## Deployments
+
+To deploy my application on Heroku, I followed these steps:
+
+1. **Create a Heroku Account:** I signed up for a Heroku account on [Heroku's website](https://www.heroku.com/).
+
+2. **Install Heroku CLI:** I downloaded and installed the Heroku Command Line Interface (CLI) from the [official documentation](https://devcenter.heroku.com/articles/heroku-cli). The CLI allows me to manage Heroku applications directly from my terminal or command prompt.
+
+3. **Login to Heroku:** I
+- logged in to my Heroku account.
+
+4. **Prepare Your Application:**
+- I ensured that my project was set up properly and contained all necessary files.
+- I made sure that my project had a requirements.txt file containing all Python dependencies required for my application.
+
+5. **Connect Heroku with GitHub:** I connected Heroku with my GitHub repository and set it up to automatically build and deploy my application whenever I push changes to GitHub.
+
+6. **Set Up Config Vars:** I set up the necessary environment variables (Config Vars) for my application. I added these variables either through the Heroku dashboard or using the Heroku CLI:
+- heroku config:set CREDS=<my-credentials>
+- heroku config:set PORT=8000
+
+
+7. **Add Buildpacks:** I specified the buildpacks required for my application. Since I'm using Python adn node.js, I needed to add the Python adn node.js buildpack. I did this through the Heroku dashboard:
+- heroku/python
+- heroku/nodejs
+
+
+8. **Deploy Your Application:** With the automatic deployment set up, Heroku automatically built and deployed my application whenever I pushed changes to my GitHub repository.
+
+9. **Access Your Application:** After a successful deployment, I could access my application by opening the URL provided by Heroku:
+
+[Link To The Game](https://save-waldo-d25a8b526b3c.herokuapp.com/).
+
+
+
+
+
+
+
