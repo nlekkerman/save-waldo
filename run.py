@@ -472,7 +472,6 @@ def play_password_level():
     print_separation_lines(Fore.RED)
     # Generate the password
     password = generate_password()
-    print(password)
     # Provide hint to the player
     hint_numbers = provide_hint(password)
 
@@ -682,7 +681,6 @@ def play_rock_paper_scissors_level():
     computer_wins = 0
     while player_wins < 3 and computer_wins < 3:
         computer_choice = random.choice(options)
-        print(computer_choice)
         print_input_instructions(
             "Enter your choice (r for rock, p for paper, s for scissors): "
             )
@@ -739,7 +737,7 @@ def play_rock_paper_scissors_level():
     return False
 
 
-# THE WORD MAZE GAME
+# THE WORD MAZE GAME FUNCTIONS
 def generate_maze_sequence(length):
     """
     Generate a random sequence of left (L)
@@ -763,7 +761,6 @@ def play_word_maze_level():
     max_wrong_attempts = 3
     correct_answers = 0
     wrong_attempts = 0
-    print(maze_sequence)
     print_instruction_message(
         "Before you, our valiant adventurer, passed O'clipper,")
     print_instruction_message(
@@ -835,7 +832,6 @@ def get_random_word():
     random_word = sample(words_data, 1)[0]
     unscrambled_word = random_word[0]
     scrambled_word = random_word[1]
-    print(scrambled_word + "  " + unscrambled_word)
     return unscrambled_word, scrambled_word
 
 
