@@ -10,6 +10,34 @@ Welcome to Save Waldo, an interactive text-based adventure game where your missi
 For an accessible version of the game, please visit [here](https://save-waldo-d25a8b526b3c.herokuapp.com/).
 
 
+## Table of Contents
+- [Description](#description)
+- [Game Flowchart](#game-flowchart)
+- [GOALS](#goals)
+  - [User Goals](#user-goals)
+  - [Owner's Goals](#owners-goals)
+- [Design](#design)
+  - [Design Goals](#design-goals)
+  - [User Interface](#user-interface)
+- [Game Features](#game-features)
+  - [Personalized Adventure](#personalized-adventure)
+  - [Multi-Level Challenge](#multi-level-challenge)
+  - [Diverse Challenges](#diverse-challenges)
+  - [Levels](#levels)
+- [Game Outcome](#game-outcome)
+  - [You Won!](#you-won)
+  - [You Lost](#you-lost)
+  - [Leaderboard](#leaderboard)
+- [Future Features](#future-features)
+- [Technologies Utilized](#technologies-utilized)
+- [Deployments](#deployments)
+- [Validation](#validation)
+  - [Bugs](#bugs)
+- [Credits](#credits)
+- [Code](#code)
+- [Special Thanks](#special-thanks)
+
+
 ### Game Flowchart 
 
 Here are the flowchart images for the Save Waldo game:
@@ -99,6 +127,8 @@ Here are the flowchart images for the Save Waldo game:
 
 ### Personalized Adventure
 - **Data Collection:** Before starting your adventure, provide your name and location for a personalized gaming experience.
+![Collect Player's Info](features/player_info.jpg)
+
 
 ### Multi-Level Challenge
 - **Interactive Gameplay:** Engage in a multi-level game consisting of various challenges, each with its own unique objective.
@@ -107,7 +137,7 @@ Here are the flowchart images for the Save Waldo game:
 ### Diverse Challenges
 - **Logic and Perception:** Test your logic and perception with challenging puzzles and mind-bending riddles.
 - **Strategic Gameplay:** Employ strategic thinking and problem-solving skills to overcome obstacles and advance in the game.
-- **Intellectual Challenges:** Confront intellectual challenges and solve puzzles to unlock new levels and progress in the game.
+- **Intellectual Challenges:** Confront intellectual challenges and solve puzzles.
 - **Scoring System:** Compete with friends and track your progress with a built-in scoring system.
 - **Personalized Experience:** Personalize your gaming experience with your name and location, stored securely to enhance immersion and engagement.
 
@@ -117,22 +147,50 @@ Here are the flowchart images for the Save Waldo game:
 - **Objective:** Crack the lock to enter the castle and advance in your quest to save Waldo.
 - **Challenge:** Guess the correct 4-digit password by using hints provided along the way.
 
+![Password Level](features/challenge_one.jpg)
+
 #### Riddle Level
 - **Objective:** Solve the mysterious riddle to uncover clues leading to Waldo's whereabouts.
 - **Challenge:** Use your wit and intellect to decipher the enigmatic riddle and progress in the game.
+
+![Riddle Level](features/challenge_two.jpg)
 
 #### Rock Paper Scissors Level
 - **Objective:** Defeat the enchanted knight, All Mighty Paper O'Clipper, to proceed on your journey.
 - **Challenge:** Engage in a battle of wits and strategy by playing rock, paper, scissors against the formidable knight.
 
+![Riddle Level](features/challenge_three.jpg)
+
 #### Word Maze Level
 - **Objective:** Navigate through the perplexing word maze to unveil the path to Waldo's captivity.
 - **Challenge:** Traverse through a labyrinth of words, avoiding dead-ends and traps, to reach your destination.
+
+![Word Maze Level](features/challenge_four.jpg)
+
 
 #### Magic Word Level
 - **Objective:**
  Player must decipher scrambled words to reveal the elusive magic word, ultimately setting Waldo free. This task will test palyer's ingenuity and determination.
 
+![Magic Word Level](features/challenge_five.jpg)
+
+### Game Outcome
+
+#### You Won!
+Congratulations! You've successfully completed the level and advanced in your quest to save Waldo.
+
+![You Won](features/won_leaderboard.jpg)
+
+#### You Lost
+Unfortunately, you were unable to complete the level this time. But don't worry, you can always try again!
+
+![You Lost](features/lost.jpg)
+
+### Leaderboard
+
+Keep track of your progress and compare your achievements with other players on the leaderboard.
+
+![Leaderboard](features/won_leaderboard.jpg)
 
 ## Future Features
 
@@ -217,7 +275,7 @@ As a result, the Python code in this project aligns with PEP 8 standards, promot
 [CI Python Linter Link](https://pep8ci.herokuapp.com/?fbclid=IwAR1EGqqRtrarAviKuJnTuie9TwmLN3VkarxztELQVbtEQ2sd1T2mikXOeZo). 
 
 
-## Testing
+# Testing
 
 ## Validation
 
@@ -231,7 +289,7 @@ As a result, the Python code in this project aligns with PEP 8 standards, promot
   - If invalid:
     - Error Message: "Invalid input. Please enter only letters and apostrophes."
 - Example:
-  ![Step 1 Example: Collect Player's Name](path_to_your_image_step_1.png)
+
 
 #### Step 2: Collect Player's Location
 - Prompt: "Enter your location please"
@@ -241,25 +299,18 @@ As a result, the Python code in this project aligns with PEP 8 standards, promot
   - If invalid:
     - Error Message: "Invalid input. Please enter only letters and spaces."
 - Example:
-  ![Step 2 Example: Collect Player's Location](path_to_your_image_step_2.png)
+  ![Step 1 and 2 Example: Collect Player's Location](features/testing_player_info.jpg)
 
 #### Note:
 - The process repeats until both the name and location are valid inputs.
 - If an input is invalid, the user is prompted again for the same input.
 
-### Play Password Level
+### Play Password Level Validation
 
-#### Step 1: Guess Validation
 - Action: Validate the player's guess to ensure it's a 4-digit number without spaces.
 - Error Message: "Please enter a valid 4-digit number without spaces."
 - Example:
-  ![Step 1 Example: Guess Validation Error](path_to_your_image_guess_validation_error.png)
-
-#### Step 2: Incorrect Guess
-- Action: Notify the player that their guess is incorrect and display the revealed password.
-- Message: "Incorrect guess! The password: [Revealed Password]"
-- Example:
-  ![Step 2 Example: Incorrect Guess Message](path_to_your_image_incorrect_guess_message.png)
+  ![Step 1 Example: Guess Validation Error](features/testing_level_one.jpg)
 
 #### Note:
 - If the guess is invalid, the player is prompted again to enter a valid guess.
@@ -267,47 +318,35 @@ As a result, the Python code in this project aligns with PEP 8 standards, promot
 
 ### Play Riddle
 
-#### Step 1: Answer Validation
+#### Step 1: RIddle Game Validation
 - Action: Validate the player's answer to the riddle.
 - Error Message: "Invalid input. Answer can only contain letters, spaces, and numbers."
 - Example:
-  ![Step 1 Example: Answer Validation Error](path_to_your_image_answer_validation_error.png)
-
-#### Step 2: Incorrect Answer
-- Action: Notify the player that their answer is incorrect and display the remaining attempts.
-- Message: "Incorrect! You have [remaining attempts] attempts remaining."
-- Example:
-  ![Step 2 Example: Incorrect Answer Message](path_to_your_image_incorrect_answer_message.png)
-
-#### Step 3: Out of Attempts
-- Action: Inform the player that they've run out of attempts and reveal the correct answer.
-- Message: "Incorrect answer. You have run out of attempts. The ghost of Enigma has defeated you."
-- Example:
-  ![Step 3 Example: Out of Attempts Message](path_to_your_image_out_of_attempts_message.png)
+  ![Example: Answer Validation Error](features/testing_level_two.jpg)
 
 #### Note:
 - If the answer is incorrect, the player is prompted to try again.
 - The player has 5 attempts to answer the riddle correctly.
-- If the player runs out of attempts, they will face the consequences of failing to solve the riddle.
+
 
 ### Play Rock Paper Scissors Level
 
-#### Step 1: Choice Validation
+#### Step 1: Play Rock Paper Scissors Level Validation
 - Action: Validate the player's choice of rock, paper, or scissors.
 - Error Message: "Invalid input. Please enter 'r', 'p', or 's'."
 - Example:
-  ![Step 1 Example: Choice Validation Error](path_to_your_image_choice_validation_error.png)
+  ![Example: Choice Validation Error](features/testing_level_three.jpg)
 
 #### Note:
 - If the player enters an invalid choice, they are prompted to try again.
 
 ### Play Word Maze Level
 
-#### Step 1: Direction Validation
+#### Step 1: Play Word Maze Level Validation
 - Action: Validate the player's guess of left (L) or right (R) direction.
 - Error Message: "Invalid input. Please enter 'L' for left or 'R' for right."
 - Example:
-  ![Step 1 Example: Direction Validation Error](path_to_your_image_direction_validation_error.png)
+  ![Example: Validation Error](features/testing_level_four.jpg)
 
 #### Note:
 - If the player enters an invalid direction, they are prompted to try again.
@@ -318,7 +357,7 @@ As a result, the Python code in this project aligns with PEP 8 standards, promot
 - Action: Validate the player's input for the unscrambled magic word.
 - Error Message: "Invalid characters entered. Please use only letters from A to Z."
 - Example:
-  ![Step 1 Example: Magic Word Validation Error](path_to_your_image_magic_word_validation_error.png)
+  ![Step 1 Example: Magic Word Validation Error](features/testing_level_five.jpg)
 
 #### Note:
 - If the player enters characters other than letters from A to Z, they are prompted to try again.

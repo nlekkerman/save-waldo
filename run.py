@@ -681,7 +681,6 @@ def play_rock_paper_scissors_level():
     computer_wins = 0
     while player_wins < 3 and computer_wins < 3:
         computer_choice = random.choice(options)
-        print(computer_choice)
         print_input_instructions(
             "Enter your choice (r for rock, p for paper, s for scissors): "
             )
@@ -762,7 +761,6 @@ def play_word_maze_level():
     max_wrong_attempts = 3
     correct_answers = 0
     wrong_attempts = 0
-    print(maze_sequence)
     print_instruction_message(
         "Before you, our valiant adventurer, passed O'clipper,")
     print_instruction_message(
