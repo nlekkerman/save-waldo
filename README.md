@@ -9,26 +9,8 @@ Welcome to Save Waldo, an interactive text-based adventure game where your missi
 
 For an accessible version of the game, please visit [here](https://save-waldo-d25a8b526b3c.herokuapp.com/).
 
-## User Experience (UX)
 
-### Targeted Audience
-Save Waldo is designed for players who enjoy challenging their logic, perception, and intelligence. It appeals to:
-
-- **Puzzle Enthusiasts**: Engage in thought-provoking challenges designed to test your problem-solving skills.
-
-- **Adventure Seekers**: Immerse yourself in an interactive text-based adventure that promises excitement at every turn.
-
-- **Story Lovers**: Experience captivating storytelling intertwined with immersive gameplay, creating a truly unique narrative experience.
-
-- **Mystery Solvers**: Uncover the secrets behind Waldo's captivity through clever problem-solving and keen observation.
-
-- **Strategic Thinkers**: Strategize your moves to overcome obstacles and progress through challenging levels.
-
-- **Curiosity Seekers**: Explore hidden clues and mysterious locations as you embark on a quest to free Waldo from captivity.
-
-- **Riddle Enthusiasts**: Put your wit to the test with a variety of cryptic riddles waiting to be solved in Save Waldo.
-
-# Flowchart Images
+### Game Flowchart 
 
 Here are the flowchart images for the Save Waldo game:
 
@@ -97,13 +79,10 @@ Here are the flowchart images for the Save Waldo game:
 
 ## Design
 
-## Introduction
-The `save-waldo` module contains functions related to the Save Waldo game, an interactive text-based adventure where players embark on a journey to rescue Waldo from his mysterious captivity. This README provides an overview of the module's functionalities, game mechanics, and design aspects.
-
 ![Colors](features/colors.jpg)
 
 ### Design Goals
-- Create an immersive and engaging text-based gaming experience.
+
 - Incorporate interactive storytelling elements to captivate players' attention.
 - Implement colorful and dynamic visualizations using the Colorama library to enhance the game's atmosphere.
 - Integrate Google Sheets API for player information storage and leaderboard management.
@@ -115,10 +94,6 @@ The `save-waldo` module contains functions related to the Save Waldo game, an in
 - **Interactive Prompts:** Informative prompts and instructions provided to guide players through the game.
 - **Clearing Screen:** Functionality to clear the terminal screen for better readability and user experience.
 - **Leaderboard Display:** Presentation of the leaderboard with player names, locations, and best times.
-
-
-### Conclusion
-The `save-waldo` module aims to deliver an immersive and challenging text-based adventure gaming experience. By combining interactive storytelling, puzzle-solving mechanics, and dynamic visual effects, the game seeks to captivate players and provide hours of entertainment.
 
 ## Game Features
 
@@ -133,10 +108,7 @@ The `save-waldo` module aims to deliver an immersive and challenging text-based 
 - **Logic and Perception:** Test your logic and perception with challenging puzzles and mind-bending riddles.
 - **Strategic Gameplay:** Employ strategic thinking and problem-solving skills to overcome obstacles and advance in the game.
 - **Intellectual Challenges:** Confront intellectual challenges and solve puzzles to unlock new levels and progress in the game.
-
-### Rewarding Progression
 - **Scoring System:** Compete with friends and track your progress with a built-in scoring system.
-- **Achievement Unlocks:** Unlock achievements and milestones as you progress through the game and complete challenges.
 - **Personalized Experience:** Personalize your gaming experience with your name and location, stored securely to enhance immersion and engagement.
 
 ### Levels
@@ -158,35 +130,44 @@ The `save-waldo` module aims to deliver an immersive and challenging text-based 
 - **Challenge:** Traverse through a labyrinth of words, avoiding dead-ends and traps, to reach your destination.
 
 #### Magic Word Level
-- **Objective:** Discover the magic word that will unlock the cage holding Waldo prisoner.
-- **Challenge:** Search for hidden clues and solve puzzles to uncover the elusive magic word and set Waldo free.
+- **Objective:**
+ Player must decipher scrambled words to reveal the elusive magic word, ultimately setting Waldo free. This task will test palyer's ingenuity and determination.
 
 
 ## Future Features
 
-- **Expanded Gameplay:** Our team is dedicated to continuously improving the game experience. Expect updates and expansions that will introduce new levels, challenges, and features to keep the adventure fresh and exciting.
+- **Expanded Gameplay:** I am dedicated to continuously improving your game experience. Expect updates and expansions that will introduce new levels, challenges, and features to keep your adventure fresh and exciting.
 
-- **Community Engagement:** We value your feedback and input! Join our vibrant community to share your ideas, suggestions, and feedback. Together, we can shape the future of the game and create an even more immersive and enjoyable experience for all players.
+- **Community Engagement:** Your feedback and input are valuable to me! Join our vibrant community to share your ideas, suggestions, and feedback. Together, we can shape the future of our game and create an even more immersive and enjoyable experience for all players.
 
 - **Multiplayer Mode:** Challenge your friends or team up with other players in an exciting multiplayer mode. Compete against each other or collaborate to overcome obstacles and complete quests together.
 
-- **Weekly Challenges:** Stay engaged and test your skills with weekly challenges that offer unique rewards and bonuses. Compete against other players on the leaderboard and earn special prizes for your achievements.
+- **Weekly Challenges:** To stay engaged it will be added weekly challenges that offer unique rewards and bonuses. To compete against other players on the leaderboard and to earn special prizes for your achievements.
 
-- **More Riddles and Scrambled Words:** Get ready for even more brain-teasing challenges! We'll be adding a variety of new riddles and scrambled words to keep you entertained and engaged.
-
+- **More Riddles and Scrambled Words:** I'll be adding a variety of new riddles and scrambled words to keep you entertained and engaged.
 
 - **Interactive Events:** Participate in special in-game events that offer limited-time challenges, rewards, and exclusive content. Keep an eye out for announcements and join the fun!
 
 
 ### Technologies Utilized:
+
 - **Paint (Windows):** Used the Paint application in Windows for basic image editing tasks, including creating and modifying images used in the game's user interface and graphics.
+
 - **SmartDraw:** Employed [SmartDraw](https://app.smartdraw.com/) for creating flowcharts and diagrams to visualize game logic, level designs, and decision trees, enhancing development planning and organization.
+
 - **ChatGPT:** Integrated ChatGPT for text generation and dialogue scripting, enabling dynamic and interactive storytelling elements within the game.
-- **Python Standard Libraries:**
+
+### Python Standard Libraries:
+
   - **shutil:** Utilized the shutil library for system-specific functions and terminal manipulation to enhance user experience and interface design.
+
   - **os:** Leveraged the os module for interacting with the operating system, facilitating file management and system calls necessary for game execution.
-  - **random:** Used the random module to introduce randomness and variability into gameplay mechanics, such as generating random numbers and shuffling sequences.
+
+  - **random:** Used the random module to introduce randomness and variability into gameplay 
+  mechanics, such as generating random numbers and shuffling sequences.
+  
   - **re:** Incorporated the re module for pattern matching and text processing tasks, enabling robust string manipulation capabilities within the game's logic.
+  
   - **time:** Utilized the time module for time-related functionalities, including tracking gameplay events, implementing delays, and measuring performance metrics.
 
 ## Deployments
@@ -209,7 +190,7 @@ To deploy my application on Heroku, I followed these steps:
 - heroku config:set PORT=8000
 
 
-6. **Add Buildpacks:** I specified the buildpacks required for my application. Since I'm using Python adn node.js, I needed to add the Python adn node.js buildpack. I did this through the Heroku dashboard:
+6. **Add Buildpacks:** I specified the buildpacks required for my application. Since I'm using Python and Node.js, I needed to add the Python adn node.js buildpack. I did this through the Heroku dashboard:
 - heroku/python
 - heroku/nodejs
 
