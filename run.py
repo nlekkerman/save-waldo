@@ -870,11 +870,6 @@ def play_magic_word_level():
         "Quickly! The time is ticking. The secret phrase is a scrambled word."
         " Unscramble it before it's too late!")
 
-    print(Fore.WHITE + Back.YELLOW + " SCRAMBLED WORD:  " + Style.RESET_ALL)
-    print_instruction_message(Fore.BLUE +
-                              f"\nScrambled word:{Style.RESET_ALL}"
-                              f"{Fore.YELLOW}{scrambled_word}"
-                              + Style.RESET_ALL)
     start_time = time.time()
     end_time = start_time + 60
     while True:
@@ -890,6 +885,12 @@ def play_magic_word_level():
                                    "The cage remains locked. "
                                    "Waldo remains trapped.")
             return False
+        print(Fore.WHITE + Back.YELLOW + " SCRAMBLED WORD:  "
+              + Style.RESET_ALL)
+        print_instruction_message(Fore.BLUE +
+                                  f"\nScrambled word:{Style.RESET_ALL}"
+                                  f"{Fore.YELLOW}{scrambled_word}"
+                                  + Style.RESET_ALL)
         print_input_instructions("Enter the unscrambled magic word,"
                                  " use only letters from A to Z please.")
         player_guess = input_for_saving_info(
