@@ -888,7 +888,7 @@ def play_magic_word_level():
         print(Fore.WHITE + Back.YELLOW + " SCRAMBLED WORD:  "
               + Style.RESET_ALL)
         print_instruction_message(Fore.BLUE +
-                                  f"\nScrambled word:{Style.RESET_ALL}"
+                                  f"Scrambled word:{Style.RESET_ALL}"
                                   f"{Fore.YELLOW}{scrambled_word}"
                                   + Style.RESET_ALL)
         print_input_instructions("Enter the unscrambled magic word,"
